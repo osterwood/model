@@ -1,0 +1,1713 @@
+2020 RECS Variable and Response Codebook,,,,,
+Variable,Type,Description and Labels,Response Codes,Section,
+DOEID,Num,Unique identifier for each respondent,100001-118496,ADMIN,
+REGIONC,Char,Census Region,"Midwest
+Northeast
+South
+West",GEOGRAPHY,
+DIVISION,Char,"Census Division, Mountain Division is divided into North and South for RECS purposes","East North Central
+East South Central
+Middle Atlantic
+Mountain North
+Mountain South
+New England
+Pacific
+South Atlantic
+West North Central
+West South Central",GEOGRAPHY,
+STATE_FIPS,Char,State Federal Information Processing System Code,state_dictionary!A1,GEOGRAPHY,
+state_postal,Char,State Postal Code,state_dictionary!A1,GEOGRAPHY,
+state_name,Char,State Name,state_dictionary!A1,GEOGRAPHY,
+BA_climate,Char,Building America Climate Zone,"Cold
+Hot-Dry
+Hot-Humid
+Marine
+Mixed-Dry
+Mixed-Humid
+Subarctic
+Very-Cold",ADMIN,
+IECC_climate_code,Char,2012 International Energy Conservation Code climate code,"1A
+2A
+2B
+3A
+3B
+3C
+4A
+4B
+4C
+5A
+5B
+5C
+6A
+6B
+7A
+7AK
+7B
+8AK",ADMIN,
+UATYP10,Char,2010 Census Urban Type Code,"C Urban cluster
+R Rural area
+U Urban area",ADMIN,
+HDD65,Num,"Heating degree days in 2020, base temperature 65F; Derived from the weighted temperatures of nearby weather stations",0-17383,WEATHER,
+CDD65,Num,"Cooling degree days in 2020, base temperature 65F; Derived from the weighted temperatures of nearby weather stations",0-5534,WEATHER,
+HDD30YR_pub,Num,"Heating degree days, 30-year average 1981-2010, base temperature 65F; Taken from nearest weather station, inoculated with random errors",0-16071,WEATHER,
+CDD30YR_pub,Num,"Cooling degree days, 30-year average 1981-2010, base temperature 65F; Taken from nearest weather station, inoculated with random errors",0-4905,WEATHER,
+TYPEHUQ,Num,Type of housing unit,"1 Mobile home
+2 Single-family house detached from any other house 
+3 Single-family house attached to one or more other houses (for example: duplex, row house, or townhome)
+4 Apartment in a building with 2 to 4 units
+5 Apartment in a building with 5 or more units",YOUR HOME,
+CELLAR,Num,Housing unit over a basement,"1 Yes
+0 No
+-2 Not applicable",YOUR HOME,
+CRAWL,Num,Housing unit over a crawlspace,"1 Yes
+0 No
+-2 Not applicable",YOUR HOME,
+CONCRETE,Num,Housing unit over a concrete slab,"1 Yes
+0 No
+-2 Not applicable",YOUR HOME,
+BASEOTH,Num,Housing unit over some other foundation,"1 Yes
+0 No
+-2 Not applicable",YOUR HOME,
+BASEFIN,Num,Finished basement,"1 Yes
+0 No
+-2 Not applicable",YOUR HOME,
+ATTIC,Num,Attic above the housing unit,"1 Yes
+0 No
+-2 Not applicable",YOUR HOME,
+ATTICFIN,Num,Finished attic,"1 Yes
+0 No
+-2 Not applicable",YOUR HOME,
+STORIES,Num,Number of stories in a single-family home,"1 One story
+2 Two stories
+3 Three stories
+4 Four or more stories
+5 Split-level
+-2 Not applicable",YOUR HOME,
+PRKGPLC1,Num,Attached garage,"1 Yes
+0 No
+-2 Not applicable",YOUR HOME,
+SIZEOFGARAGE,Num,Size of attached garage,"1 One-car garage
+2 Two-car garage
+3 Three-or-more-car garage
+-2 Not applicable",YOUR HOME,
+KOWNRENT,Num,Own or rent,"1 Own
+2 Rent
+3 Occupy without payment of rent",YOUR HOME,
+YEARMADERANGE,Num,Range when housing unit was built,"1 Before 1950
+2 1950 to 1959
+3 1960 to 1969
+4 1970 to 1979
+5 1980 to 1989
+6 1990 to 1999
+7 2000 to 2009
+8 2010 to 2015
+9 2016 to 2020",YOUR HOME,
+BEDROOMS,Num,Number of bedrooms (top-coded),0 - 6 ,YOUR HOME,
+NCOMBATH,Num,Number of full bathrooms (top-coded),0 - 4,YOUR HOME,
+NHAFBATH,Num,Number of half bathrooms (top-coded),0 - 2,YOUR HOME,
+OTHROOMS,Num,Number of other rooms (top-coded),1 - 9,YOUR HOME,
+TOTROOMS,Num,"Total number of rooms in the housing unit, excluding bathrooms; a derived variable",1-15,YOUR HOME,
+STUDIO,Num,Studio apartment; a derived variable,"1 Yes
+0 No
+-2 Not applicable",YOUR HOME,
+WALLTYPE,Num,Major outside wall material,"1 Brick
+2 Wood
+3 Siding (aluminum, fiber cement, vinyl, or steel) 
+4 Stucco
+5 Shingle (composition)
+6 Stone 
+7 Concrete block 
+99 Other",YOUR HOME,
+ROOFTYPE,Num,Major roofing material; 'Not applicable' applies to apartment buildings with 5 or more units,"1 Ceramic or clay tiles
+2 Wood shingles/shakes
+3 Metal
+4 Slate or synthetic slate
+5 Shingles (composition or asphalt)
+6 Concrete tiles
+99 Other
+-2 Not applicable",YOUR HOME,
+HIGHCEIL,Num,Any high ceilings; 'Not applicable' applies to mobile homes,"1 Yes
+0 No
+-2 Not applicable",YOUR HOME,
+DOOR1SUM,Num,Number of sliding glass or French doors,0 - 9,YOUR HOME,
+WINDOWS,Num,Number of windows,"1 1 or 2 windows
+2 3 to 5 windows
+3 6 to 9 windows
+4 10 to 15 windows
+5 16 to 19 windows
+6 20 to 29 windows
+7 30 or more windows",YOUR HOME,
+TYPEGLASS,Num,Type of glass in most windows,"1 Single-pane glass
+2 Double-pane glass
+3 Triple-pane glass",YOUR HOME,
+ORIGWIN,Num,Mostly original windows in home,"1 Yes
+0 No",YOUR HOME,
+WINFRAME,Num,Window frame material,"1 Wood
+2 Metal (aluminum)
+3 Vinyl
+4 Composite
+5 Fiberglass",YOUR HOME,
+TREESHAD,Num,Any large shade trees,"1 Yes
+0 No",YOUR HOME,
+ADQINSUL,Num,Level of insulation; respondent-reported,"1 Well insulated
+2 Adequately insulated
+3 Poorly insulated
+4 Not insulated",YOUR HOME,
+DRAFTY,Num,How often home is drafty,"1 All the time
+2 Most of the time
+3 Some of the time
+4 Never",YOUR HOME,
+UGASHERE,Num,Natural gas available in neighborhood; respondent-reported,"1 Yes
+0 No",YOUR HOME,
+SWIMPOOL,Num,Has swimming pool,"1 Yes
+0 No
+-2 Not applicable",YOUR HOME,
+MONPOOL,Num,Months swimming pool used in the past year,"0 - 12
+-2  Not applicable",YOUR HOME,
+POOLPUMP,Num,Has variable-speed pool pump,"1 Yes
+0 No
+-2 Not applicable",YOUR HOME,
+FUELPOOL,Num,Fuel used for heating swimming pool,"0 None, swimming pool is not heated
+5 Electricity
+1 Natural gas from underground pipes
+2 Propane (bottled gas)
+3 Fuel oil
+99 Other 
+-2 Not applicable",YOUR HOME,
+RECBATH,Num,Have hot tub,"1 Yes
+0 No",YOUR HOME,
+MONTUB,Num,Months hot tub used in the past year,"0 - 12
+-2  Not applicable",YOUR HOME,
+FUELTUB,Num,Fuel used for heating hot tub,"5 Electricity
+1 Natural gas from underground pipes
+2 Propane (bottled gas)
+3 Fuel oil
+99 Other 
+-2 Not applicable",YOUR HOME,
+NUMFRIG,Num,Number of refrigerators used,0 - 9,APPLIANCES,
+SIZRFRI1,Num,Size of most-used refrigerator,"1 Half-size or compact
+2 Small (17.5 cubic feet or less)
+3 Medium (17.6 to 22.5 cubic feet)
+4 Large (22.6 to 29.5 cubic feet)
+5 Very large (bigger than 29.5 cubic feet)
+-2 Not applicable",APPLIANCES,
+TYPERFR1,Num,Door arrangement of most-used refrigerator,"1 One door
+2 Two doors, freezer next to the refrigerator
+3 Two doors, freezer above the refrigerator
+4 Two doors, freezer below the refrigerator
+5 Three or more doors 
+-2 Not applicable",APPLIANCES,
+AGERFRI1,Num,Age of most-used refrigerator,"1 Less than 2 years old
+2 2 to 4 years old
+3 5 to 9 years old
+4 10 to 14 years old
+5 15 to 19 years old
+6 20 or more years old
+-2 Not applicable",APPLIANCES,
+ICE,Num,Have through-the-door ice on most-used refrigerator,"1 Yes
+0 No
+-2 Not applicable",APPLIANCES,
+SIZRFRI2,Num,Size of second-most-used refrigerator,"1 Half-size or compact
+2 Small (17.5 cubic feet or less)
+3 Medium (17.6 to 22.5 cubic feet)
+4 Large (22.6 to 29.5 cubic feet)
+5 Very large (bigger than 29.5 cubic feet)
+-2 Not applicable",APPLIANCES,
+TYPERFR2,Num,Door arrangement of second-most-used refrigerator,"1 One door
+2 Two doors, freezer next to the refrigerator
+3 Two doors, freezer above the refrigerator
+4 Two doors, freezer below the refrigerator
+5 Three or more doors 
+-2 Not applicable",APPLIANCES,
+AGERFRI2,Num,Age of second-most-used refrigerator,"1 Less than 2 years old
+2 2 to 4 years old
+3 5 to 9 years old
+4 10 to 14 years old
+5 15 to 19 years old
+6 20 or more years old
+-2 Not applicable",APPLIANCES,
+LOCRFRI2,Num,Location of second-most-used refrigerator,"1 Basement
+2 Garage
+3 Outside
+4 Main living area
+99 Other 
+-2 Not applicable",APPLIANCES,
+WINECHILL,Num,Has wine chiller,"1 Yes
+0 No",APPLIANCES,
+NUMFREEZ,Num,Number of separate freezers used,0 - 8,APPLIANCES,
+UPRTFRZR,Num,Door arrangement of most-used freezer,"1 Upright
+2 Chest
+-2 Not applicable",APPLIANCES,
+SIZFREEZ,Num,Size of most-used freezer,"1 Half-size or compact
+2 Small (17.5 cubic feet or less)
+3 Medium (17.6 to 22.5 cubic feet)
+4 Large (22.6 to 29.5 cubic feet)
+5 Very large (bigger than 29.5 cubic feet)
+-2 Not applicable",APPLIANCES,
+FREEZER,Num,Defrosting type of most-used freezer,"1 Manual
+2 Automatic
+-2 Not applicable",APPLIANCES,
+AGEFRZR,Num,Age of most-used freezer,"1 Less than 2 years old
+2 2 to 4 years old
+3 5 to 9 years old
+4 10 to 14 years old
+5 15 to 19 years old
+6 20 or more years old
+-2 Not applicable",APPLIANCES,
+RANGE,Num,Number of ranges (single appliance with both a cooktop and an oven),0 - 2,APPLIANCES,
+COOKTOP,Num,Number of separate cooktops,0 - 2,APPLIANCES,
+OVEN,Num,Number of wall ovens,0 - 3,APPLIANCES,
+RANGEFUEL,Num,Fuel used by range,"5 Electricity
+1 Natural gas from underground pipes
+2 Propane (bottled gas)
+13 Electricity and gas (dual-fuel range) 
+-2 Not applicable",APPLIANCES,
+RANGEINDT,Num,Range has induction cooktop,"1 Yes
+0 No
+-2 Not applicable",APPLIANCES,
+RCOOKUSE,Num,Frequency of use of cooktop part of range per week,"0 - 21
+-2  Not applicable",APPLIANCES,
+ROVENUSE,Num,Frequency of use of oven part of range per week,"0 - 21
+-2  Not applicable",APPLIANCES,
+COOKTOPFUEL,Num,Fuel used by separate cooktop,"5 Electricity
+1 Natural gas from underground pipes
+2 Propane (bottled gas)
+-2 Not applicable",APPLIANCES,
+COOKTOPINDT,Num,Separate cooktop is induction,"1 Yes
+0 No
+-2 Not applicable",APPLIANCES,
+COOKTOPUSE,Num,Frequency of separate cooktop use per week,"0 - 21
+-2  Not applicable",APPLIANCES,
+OVENFUEL,Num,Fuel used by wall oven,"5 Electricity
+1 Natural gas from underground pipes
+2 Propane (bottled gas)
+-2 Not applicable",APPLIANCES,
+OVENUSE,Num,Frequency of wall oven use per week,"0 - 21
+-2  Not applicable",APPLIANCES,
+MICRO,Num,Number of microwaves ,0 - 3,APPLIANCES,
+AMTMICRO,Num,Frequency of microwave use per week,"0 - 70
+-2  Not applicable",APPLIANCES,
+OUTGRILLFUEL,Num,Fuel used by outdoor grill,"1 Yes, natural gas grill
+2 Yes, propane grill
+23 Yes, charcoal grill
+-2 No grill (Not applicable)",APPLIANCES,
+OUTGRILL,Num,Outdoor grill used; a derived variable,"1 Yes
+0 No",APPLIANCES,
+NUMMEAL,Num,Frequency hot meals are cooked,"1 Three or more times a day
+2 Two times a day
+3 Once a day
+4 A few times each week
+5 About once a week
+6 Less than once a week
+0 Never",APPLIANCES,
+USECOFFEE,Num,How often electric coffee maker is used per week,"1 Every day or almost every day
+2 A few times each week
+3 Only occasionally
+0 Does not have or does not use coffee maker in home",APPLIANCES,
+TOAST,Num,Toaster used at least once per week,"1 Yes
+0 No",APPLIANCES,
+TOASTOVN,Num,Toaster oven used at least once per week,"1 Yes
+0 No",APPLIANCES,
+CROCKPOT,Num,Crock-Pot or slow cooker used at least once per week,"1 Yes
+0 No",APPLIANCES,
+PRSSCOOK,Num,Instant Pot or electric pressure cooker used at least once per week,"1 Yes
+0 No",APPLIANCES,
+RICECOOK,Num,Rice cooker used at least once per week,"1 Yes
+0 No",APPLIANCES,
+BLENDER,Num,Blender or juicer used at least once per week,"1 Yes
+0 No",APPLIANCES,
+APPOTHER,Num,Any other small kitchen appliance used at least once per week,"1 Yes
+0 No",APPLIANCES,
+ELFOOD,Num,Electricity used for cooking; a derived variable,"1 Yes
+0 No",APPLIANCES,
+LPCOOK,Num,Propane used for cooking; a derived variable,"1 Yes
+0 No",APPLIANCES,
+UGCOOK,Num,Natural gas used for cooking; a derived variable,"1 Yes
+0 No",APPLIANCES,
+DISHWASH,Num,Has dishwasher,"1 Yes
+0 No",APPLIANCES,
+DWASHUSE,Num,Frequency of dishwasher use per week,"0 - 21
+-2  Not applicable",APPLIANCES,
+DWCYCLE,Num,Dishwasher cycle type,"1 Normal cycle without heated dry
+2 Normal cycle with heated dry
+3 Heavy or “pots and pans” cycle
+4 Light or delicate cycle
+5 Energy saver cycle
+6 Quick cycle
+-2 Not applicable",APPLIANCES,
+AGEDW,Num,Age of dishwasher,"1 Less than 2 years old
+2 2 to 4 years old
+3 5 to 9 years old
+4 10 to 14 years old
+5 15 to 19 years old
+6 20 or more years old
+-2 Not applicable",APPLIANCES,
+CWASHER,Num,Has clothes washer in home,"1 Yes
+0 No",APPLIANCES,
+TOPFRONT,Num,Top- or front-loading clothes washer,"1 Top-loading
+2 Front-loading
+-2 Not applicable",APPLIANCES,
+WASHLOAD,Num,Frequency of clothes washer use per week,"0 - 30
+-2  Not applicable",APPLIANCES,
+WASHTEMP,Num,Water temperature used for clothes washer wash cycle,"1 Hot
+2 Warm
+3 Cold 
+-2 Not applicable",APPLIANCES,
+AGECWASH,Num,Age of clothes washer,"1 Less than 2 years old
+2 2 to 4 years old
+3 5 to 9 years old
+4 10 to 14 years old
+5 15 to 19 years old
+6 20 or more years old
+-2 Not applicable",APPLIANCES,
+DRYER,Num,Has clothes dryer in home,"1 Yes
+0 No",APPLIANCES,
+DRYRFUEL,Num,Fuel used by clothes dryer,"5 Electricity
+1 Natural gas from underground pipes
+2 Propane (bottled gas)
+-2 Not applicable",APPLIANCES,
+DRYRUSE,Num,Frequency of clothes dryer use per week,"0 - 30
+-2  Not applicable",APPLIANCES,
+AGECDRYER,Num,Age of clothes dryer,"1 Less than 2 years old
+2 2 to 4 years old
+3 5 to 9 years old
+4 10 to 14 years old
+5 15 to 19 years old
+6 20 or more years old
+-2 Not applicable",APPLIANCES,
+TVCOLOR,Num,Number of televisions used,0 - 14,ELECTRONICS,
+TVSIZE1,Num,Size of most-used TV,"1 27 inches or less
+2 28 to 39 inches
+3 40 to 59 inches
+4 60 inches or more
+-2 Not applicable",ELECTRONICS,
+TVTYPE1,Num,Display type of most-used TV,"1 LED or OLED
+2 LCD
+3 Plasma
+4 Projection
+5 Tube (non-flat screen)
+-2 Not applicable",ELECTRONICS,
+TVUSE1,Num,Main use of most-used TV,"1 Watching live programming
+2 Watching recorded or on-demand programming from a set-top box
+3 Streaming content via built-in smart TV apps
+4 Streaming content via a separate streaming device connected to the television
+5 Playing video games
+99 Other 
+-2 Not applicable",ELECTRONICS,
+TVONWD1,Num,Most-used TV usage on weekdays in hours per day,"0-24 (whole numbers)
+0.5 Less than one hour
+-2 Not applicable",ELECTRONICS,
+TVONWE1,Num,Most-used TV usage on weekends in hours per day,"0-24 (whole numbers)
+0.5 Less than one hour
+-2 Not applicable",ELECTRONICS,
+TVSIZE2,Num,Size of second-most-used TV,"1 27 inches or less
+2 28 to 39 inches
+3 40 to 59 inches
+4 60 inches or more
+-2 Not applicable",ELECTRONICS,
+TVTYPE2,Num,Display type of second-most-used TV,"1 LED or OLED
+2 LCD
+3 Plasma
+4 Projection
+5 Tube (non-flat screen)
+-2 Not applicable",ELECTRONICS,
+TVUSE2,Num,Main use of second-most-used TV,"1 Watching live programming
+2 Watching recorded or on-demand programming from a set-top box
+3 Streaming content via built-in smart TV apps
+4 Streaming content via a separate streaming device connected to the television
+5 Playing video games
+99 Other 
+-2 Not applicable",ELECTRONICS,
+TVONWD2,Num,Second-most-used TV usage on weekdays in hours per day,"0-24 (whole numbers)
+0.5 Less than one hour
+-2 Not applicable",ELECTRONICS,
+TVONWE2,Num,Second-most-used TV usage on weekends in hours per day,"0-24 (whole numbers)
+0.5 Less than one hour
+-2 Not applicable",ELECTRONICS,
+TVSIZE3,Num,Third-most-used TV size,"1 27 inches or less
+2 28 to 39 inches
+3 40 to 59 inches
+4 60 inches or more
+-2 Not applicable",ELECTRONICS,
+TVTYPE3,Num,Display type of third-most-used TV,"1 LED or OLED
+2 LCD
+3 Plasma
+4 Projection
+5 Tube (non-flat screen)
+-2 Not applicable",ELECTRONICS,
+TVUSE3,Num,Main use of third-most-used TV,"1 Watching live programming
+2 Watching recorded or on-demand programming from a set-top box
+3 Streaming content via built-in smart TV apps
+4 Streaming content via a separate streaming device connected to the television
+5 Playing video games
+99 Other 
+-2 Not applicable",ELECTRONICS,
+TVONWD3,Num,Third-most-used TV usage on weekdays in hours per day,"0-24 (whole numbers)
+0.5 Less than one hour
+-2 Not applicable",ELECTRONICS,
+TVONWE3,Num,Third-most-used TV usage on weekends in hours per day,"0-24 (whole numbers)
+0.5 Less than one hour
+-2 Not applicable",ELECTRONICS,
+CABLESAT,Num,Number of cable or satellite boxes without DVR used,"0 - 12
+-2  Not applicable",ELECTRONICS,
+COMBODVR,Num,Number of cable or satellite boxes with DVR used,"0 - 10
+-2  Not applicable",ELECTRONICS,
+SEPDVR,Num,Number of separate DVRs used,"0 - 6
+-2  Not applicable",ELECTRONICS,
+INTSTREAM,Num,Number of over-the-top internet streaming devices for TV used,"0 - 10
+-2  Not applicable",ELECTRONICS,
+PLAYSTA,Num,Number of video game consoles used,"0 - 8
+-2  Not applicable",ELECTRONICS,
+DVD,Num,Number of DVD or Blu-ray players used,"0 - 6
+-2  Not applicable",ELECTRONICS,
+VCR,Num,Number of VCRs used,"0 - 5
+-2  Not applicable",ELECTRONICS,
+TVAUDIOSYS,Num,Number of home theater or audio systems used,"0 - 5
+-2  Not applicable",ELECTRONICS,
+DESKTOP,Num,Number of desktop computers used,0 - 8,ELECTRONICS,
+NUMLAPTOP,Num,Number of laptop computers used,0 - 20,ELECTRONICS,
+NUMTABLET,Num,Number of tablet computers or e-readers used,0 - 10,ELECTRONICS,
+ELPERIPH,Num,"Number of printers, scanners, fax machines, or copiers used",0 - 10,ELECTRONICS,
+NUMSMPHONE,Num,Number of smartphones used,0 - 11,ELECTRONICS,
+CELLPHONE,Num,Number of other cell phones used,0 - 12,ELECTRONICS,
+TELLWORK,Num,Any household member teleworking,"1 Yes
+0 No",ELECTRONICS,
+TELLDAYS,Num,Number of days teleworking in the past week,"0 - 7
+-2  Not applicable",ELECTRONICS,
+TLDESKTOP,Num,Desktop computer used for teleworking,"1 Yes
+0 No
+-2 Not applicable",ELECTRONICS,
+TLLAPTOP,Num,Laptop computer used for teleworking,"1 Yes
+0 No
+-2 Not applicable",ELECTRONICS,
+TLTABLET,Num,Tablet used for teleworking,"1 Yes
+0 No
+-2 Not applicable",ELECTRONICS,
+TLMONITOR,Num,External monitor used for teleworking,"1 Yes
+0 No
+-2 Not applicable",ELECTRONICS,
+TLOTHER,Num,Any other computer equipment used for teleworking,"1 Yes
+0 No
+-2 Not applicable",ELECTRONICS,
+ONLNEDUC,Num,Any household member receiving online K-12 distance learning or online college courses,"1 Yes
+0 No",ELECTRONICS,
+INTERNET,Num,Internet access at home,"1 Yes, by paying a cell phone company or Internet service provider
+2 Yes, without paying a cell phone company or Internet service provider
+0 No access to the Internet",ELECTRONICS,
+INTYPECELL,Num,Have Internet access using cellular data,"1 Yes
+0 No
+-2 Not applicable",ELECTRONICS,
+INTYPEBROAD,Num,Have Internet access using broadband service,"1 Yes
+0 No
+-2 Not applicable",ELECTRONICS,
+INTYPEOTH,Num,"Have Internet access using satellite, dial-up, or other service","1 Yes
+0 No
+-2 Not applicable",ELECTRONICS,
+SMARTSPK,Num,Number of smart speakers,"0 - 9
+-2  Not applicable",ELECTRONICS,
+SSLIGHT,Num,Use smart speakers to control lighting,"1 Yes
+0 No
+-2 Not applicable",ELECTRONICS,
+SSTEMP,Num,Use smart speakers to control temperature,"1 Yes
+0 No
+-2 Not applicable",ELECTRONICS,
+SSSECURE,Num,"Use smart speakers to control security system, cameras, or locks","1 Yes
+0 No
+-2 Not applicable",ELECTRONICS,
+SSTV,Num,Use smart speakers to control TV or peripherals,"1 Yes
+0 No
+-2 Not applicable",ELECTRONICS,
+SSOTHER,Num,Use smart speakers to control some other device,"1 Yes
+0 No
+-2 Not applicable",ELECTRONICS,
+HEATHOME,Num,Space heating equipment used,"1 Yes
+0 No",SPACE HEATING,
+DNTHEAT,Num,"No space heating equipment, or unused space heating equipment; a derived variable","1  Has space heating equipment, but does not use it
+2  Does not have any space heating equipment
+-2 Not applicable",SPACE HEATING,
+HEATAPT,Num,Main heating equipment serves multiple housing units in building,"1 Yes
+0 No
+-2 Not applicable",SPACE HEATING,
+EQUIPM,Num,Main space heating equipment type,"3 Central furnace 
+2 Steam or hot water system with radiators or pipes 
+4 Central heat pump
+13 Ductless heat pump, also known as a “mini-split”
+5 Built-in electric units installed in walls, ceilings, baseboards, or floors
+7 Built-in room heater burning gas or oil
+8 Wood or pellet stove 
+10 Portable electric heaters
+99 Other 
+-2 Not applicable",SPACE HEATING,
+FUELHEAT,Num,Main space heating fuel,"5 Electricity
+1 Natural gas from underground pipes
+2 Propane (bottled gas)
+3 Fuel oil
+7 Wood or pellets
+99 Other
+-2 Not applicable",SPACE HEATING,
+EQUIPAGE,Num,Age of main space heating equipment,"1 Less than 2 years old
+2 2 to 4 years old
+3 5 to 9 years old
+4 10 to 14 years old
+5 15 to 19 years old
+6 20 or more years old
+-2 Not applicable",SPACE HEATING,
+GEOHP,Num,Main central heat pump is geothermal or ground source,"1 Yes
+0 No
+-2 Not applicable",SPACE HEATING,
+EQUIPAUXTYPE,Num,Secondary space heating equipment type,"0 Home is heated but no secondary equipment used
+10 Portable electric heaters
+9 Fireplace
+8 Wood or pellet stove
+5 Built-in electric units installed in walls, ceilings, baseboards, or floors
+13 Ductless heat pump, also known as a “mini-split”
+99 Other 
+-2 Not applicable, home is not heated",SPACE HEATING,
+EQUIPAUX,Num,Secondary space heating equipment used; a derived variable,"1 Yes
+0 No, home is heated but secondary equipment not used
+-2 Not applicable, home is not heated",SPACE HEATING,
+FUELAUX,Num,Secondary space heating fuel,"5 Electricity
+1 Natural gas from underground pipes
+2 Propane (bottled gas)
+3 Fuel oil
+7 Wood or pellets
+99 Other
+-2 Not applicable",SPACE HEATING,
+USEEQUIPAUX,Num,Secondary heating equipment usage,"1 Use all or almost all of the time
+2 Use at least once per week
+3 Use a few times per month
+4 Use only when it is very cold
+5 Use only in rare situations, such as when a guest is visiting
+-2 Not applicable",SPACE HEATING,
+NUMPORTEL,Num,Number of portable electric heaters used,"1 - 9
+-2 Not applicable",SPACE HEATING,
+NUMFIREPLC,Num,Number of fireplaces used,"1 - 7
+-2 Not applicable",SPACE HEATING,
+NUMDLHP,Num,Number of ductless heat pump units used for heating,"1 - 8
+-2 Not applicable",SPACE HEATING,
+BASEHEAT,Num,Heating used in basement,"1 Yes
+0 No
+-2 Not applicable",SPACE HEATING,
+ATTCHEAT,Num,Heating used in attic,"1 Yes
+0 No
+-2 Not applicable",SPACE HEATING,
+GARGHEAT,Num,Heating used in attached garage,"1 Yes
+0 No
+-2 Not applicable",SPACE HEATING,
+HUMIDTYPE,Num,Type of humidifier used,"1 Yes, a portable humidifier
+2 Yes, a whole-home humidifier
+0 No",SPACE HEATING,
+NUMPORTHUM,Num,Number of portable humidifiers used,"1 - 8
+-2 Not applicable",SPACE HEATING,
+USEHUMID,Num,Humidifier household usage,"1 Use only occasionally, such as when someone in the household is sick 
+2 Use only during winter months
+3 Use about half of the year
+4 Use all or almost all of the year
+99 Other 
+-2 Not applicable",SPACE HEATING,
+ELWARM,Num,Electricity used for space heating; a derived variable,"1 Yes
+0 No",SPACE HEATING,
+UGWARM,Num,Natural gas used for space heating; a derived variable,"1 Yes
+0 No",SPACE HEATING,
+LPWARM,Num,Propane used for space heating; a derived variable,"1 Yes
+0 No",SPACE HEATING,
+FOWARM,Num,Fuel oil used for space heating; a derived variable,"1 Yes
+0 No",SPACE HEATING,
+WDWARM,Num,Wood used for space heating; a derived variable,"1 Yes
+0 No",SPACE HEATING,
+AIRCOND,Num,Air conditioning equipment used,"1 Yes
+0 No",AIR CONDITIONING,
+COOLAPT,Num,Main air conditioning equipment serves multiple housing units in building,"1 Yes
+0 No
+-2 Not applicable",AIR CONDITIONING,
+ACEQUIPM_pub,Num,Main air conditioning equipment type,"1 Central air conditioner (includes central heat pump)
+3 Ductless heat pump, also known as a “mini-split”
+4 Window or wall air conditioner
+5 Portable air conditioner
+6 Evaporative or swamp cooler
+-2 Not applicable",AIR CONDITIONING,
+ACEQUIPAGE,Num,Age of main air conditioning equipment,"1 Less than 2 years old
+2 2 to 4 years old
+3 5 to 9 years old
+4 10 to 14 years old
+5 15 to 19 years old
+6 20 or more years old
+-2 Not applicable",AIR CONDITIONING,
+ACEQUIPAUXTYPE_pub,Num,Secondary air conditioning equipment type,"0 No other equipment used
+1 Central air conditioner (includes central heat pump)
+3 Ductless heat pump, also known as a “mini-split”
+4 Window or wall air conditioner
+5 Portable air conditioner
+6 Evaporative or swamp cooler
+-2 Not applicable",AIR CONDITIONING,
+NUMDLHPAC,Num,Number of ductless heat pump units used for air conditioning,"1 - 9
+-2 Not applicable",AIR CONDITIONING,
+NUMWWAC,Num,Number of window or wall air conditioners used,"1 - 9
+-2 Not applicable",AIR CONDITIONING,
+NUMPORTAC,Num,Number of portable air conditioners used,"1 - 8
+-2 Not applicable",AIR CONDITIONING,
+BASECOOL,Num,Air conditioning used in basement,"1 Yes
+0 No
+-2 Not applicable",AIR CONDITIONING,
+ATTCCOOL,Num,Air conditioning used in attic,"1 Yes
+0 No
+-2 Not applicable",AIR CONDITIONING,
+GARGCOOL,Num,Air conditioning used in attached garage,"1 Yes
+0 No
+-2 Not applicable",AIR CONDITIONING,
+NUMCFAN,Num,Number of ceiling fans used,0 - 15,AIR CONDITIONING,
+NUMFLOORFAN,Num,Number of floor or window fans used,0 - 10,AIR CONDITIONING,
+USECFAN,Num,Most-used ceiling fan usage,"1 Use only occasionally, such as when it is very hot or when guests are over
+2 Use only during summer months to stay cool
+3 Use about half of the year
+4 Use all or almost all of the year, such as for white noise or air circulation
+99 Other 
+-2 Not applicable",AIR CONDITIONING,
+HOUSEFAN,Num,Any whole house cooling fans used,"1 Yes
+0 No
+-2 Not applicable",AIR CONDITIONING,
+ATTICFAN,Num,Any attic exhaust fans used,"1 Yes
+0 No
+-2 Not applicable",AIR CONDITIONING,
+DEHUMTYPE,Num,Type of dehumidifier used,"1 Yes, a portable dehumidifier
+2 Yes, a whole-home dehumidifier
+0 No",AIR CONDITIONING,
+NUMPORTDEHUM,Num,Number of portable dehumidifiers used,"1 - 8
+-2 Not applicable",AIR CONDITIONING,
+USEDEHUM,Num,Dehumidifier usage,"1 Use only occasionally, such as when someone in the household is suffering from allergies
+2 Use only during summer months
+3 Use about half of the year
+4 Use all or almost all of the year
+99 Other 
+-2 Not applicable",AIR CONDITIONING,
+ELCOOL,Num,Electricity used for air conditioning; a derived variable,"1 Yes
+0 No",AIR CONDITIONING,
+TYPETHERM,Num,Type of thermostat used,"1 Yes, a manual or non-programmable thermostat
+2 Yes, a programmable thermostat
+3 Yes, a “smart” or Internet-connected thermostat
+0 Does not have thermostat for heating or cooling
+-2 Not applicable",THERMOSTAT,
+HEATCNTL,Num,Winter temperature control method,"1 Set one temperature and leave it there most of the time
+2 Manually adjust the temperature 
+3 Programmable or smart thermostat automatically adjusts the temperature
+4 Turn equipment on or off as needed
+5 Our household does not have control over the temperature
+99 Other 
+-2 Not applicable",THERMOSTAT,
+TEMPHOME,Num,Winter thermostat setting or temperature in home when someone is home during the day,"50 - 90
+-2 Not applicable",THERMOSTAT,
+TEMPGONE,Num,Winter thermostat setting or temperature in home when no one is home during the day,"50 - 90
+-2 Not applicable",THERMOSTAT,
+TEMPNITE,Num,Winter thermostat setting or temperature in home at night,"50 - 90
+-2 Not applicable",THERMOSTAT,
+COOLCNTL,Num,Summer temperature control method,"1 Set one temperature and leave it there most of the time
+2 Manually adjust the temperature 
+3 Programmable or smart thermostat automatically adjusts the temperature 
+4 Turn equipment on or off as needed
+5 Our household does not have control over the temperature
+99 Other 
+-2 Not applicable",THERMOSTAT,
+TEMPHOMEAC,Num,Summer thermostat setting or temperature in home when someone is home during the day,"50 - 90
+-2 Not applicable",THERMOSTAT,
+TEMPGONEAC,Num,Summer thermostat setting or temperature in home when no one is home during the day,"50 - 90
+-2 Not applicable",THERMOSTAT,
+TEMPNITEAC,Num,Summer thermostat setting or temperature in home at night,"50 - 90
+-2 Not applicable",THERMOSTAT,
+H2OAPT,Num,Water heating equipment serves multiple housing units in building,"1 Yes
+0 No
+-2 Not applicable",WATER HEATING,
+H2OMAIN,Num,Location of main water heating equipment in single-family home,"1 Main living space
+2 Basement
+3 Garage
+4 Outside
+99 Other 
+-2 Not applicable",WATER HEATING,
+WHEATSIZ,Num,Main water heater size,"1 Small (30 gallons or less)
+2 Medium (31 to 49 gallons)
+3 Large (50 gallons or more)
+4 Tankless or on-demand",WATER HEATING,
+WHEATBKT,Num,Main water heater has blanket,"1 Yes
+0 No
+-2 Not applicable",WATER HEATING,
+WHEATAGE,Num,Main water heater age,"1 Less than 2 years old
+2 2 to 4 years old
+3 5 to 9 years old
+4 10 to 14 years old
+5 15 to 19 years old
+6 20 or more years old",WATER HEATING,
+FUELH2O,Num,Fuel used by main water heater,"5 Electricity
+1 Natural gas from underground pipes
+2 Propane (bottled gas)
+3 Fuel oil
+7 Wood
+8 Solar thermal
+99 Other ",WATER HEATING,
+MORETHAN1H2O,Num,Has more than one water heater,"1 Yes
+0 No",WATER HEATING,
+FUELH2O2,Num,Fuel used by secondary water heater,"5 Electricity
+1 Natural gas from underground pipes
+2 Propane (bottled gas)
+3 Fuel oil
+7 Wood
+8 Solar thermal
+99 Other 
+-2 Not applicable",WATER HEATING,
+ELWATER,Num,Electricity used for water heating; a derived variable,"1 Yes
+0 No",WATER HEATING,
+FOWATER,Num,Fuel oil used for water heating; a derived variable,"1 Yes
+0 No",WATER HEATING,
+LPWATER,Num,Propane used for water heating; a derived variable,"1 Yes
+0 No",WATER HEATING,
+SOLWATER,Num,Solar used for water heating; a derived variable,"1 Yes
+0 No",WATER HEATING,
+WDWATER,Num,Wood used for water heating; a derived variable,"1 Yes
+0 No",WATER HEATING,
+UGWATER,Num,Natural gas used for water heating; a derived variable,"1 Yes
+0 No",WATER HEATING,
+LGTIN1TO4,Num,Number of inside light bulbs turned on 1 to 4 hours per day,0 - 90,LIGHTING,
+LGTIN4TO8,Num,Number of inside light bulbs turned on 4 to 8 hours per day,0 - 84,LIGHTING,
+LGTINMORE8,Num,Number of inside light bulbs turned on more than 8 hours per day,0 - 99,LIGHTING,
+LGTINLED,Num,Portion of inside light bulbs that are LED,"1 All 
+2 Most 
+3 About half 
+4 Some 
+0 None ",LIGHTING,
+LGTINCFL,Num,Portion of inside light bulbs that are CFL,"1 All 
+2 Most 
+3 About half 
+4 Some 
+0 None ",LIGHTING,
+LGTINCAN,Num,Portion of inside light bulbs that are incandescent or halogen,"1 All 
+2 Most 
+3 About half 
+4 Some 
+0 None ",LIGHTING,
+LGTOUTANY,Num,Any outside light bulbs left on all night,"1 Yes
+0 No",LIGHTING,
+LGTOUTNITE,Num,Number of outside light bulbs left on all night,"1 - 65
+-2 Not applicable",LIGHTING,
+LGTOUTLED,Num,Any outside LED bulbs left on all night,"1 Yes
+0 No
+-2 Not applicable",LIGHTING,
+LGTOUTCFL,Num,Any outside CFL bulbs left on all night,"1 Yes
+0 No
+-2 Not applicable",LIGHTING,
+LGTOUTCAN,Num,Any outside incandescent or halogen bulbs left on all night,"1 Yes
+0 No
+-2 Not applicable",LIGHTING,
+ELPAY,Num,Who pays for electricity,"1 Household is responsible for paying for all electricity used in this home
+2 All electricity used in this home is included in the rent or condo fee
+3 Some is paid by the household, some is included in the rent or condo fee
+99 Other",ENERGY BILLS,
+NGPAY,Num,Who pays for natural gas,"1 Household is responsible for paying for all natural gas used in this home
+2 All natural gas used in this home is included in the rent or condo fee
+3 Some is paid by the household, some is included in the rent or condo fee
+99 Other
+-2 Do not use natural gas",ENERGY BILLS,
+LPGPAY,Num,Who pays for propane,"1 Household is responsible for paying for all propane used in this home
+2 All propane used in this home is included in the rent or condo fee
+3 Some is paid by the household, some is included in the rent or condo fee
+99 Other 
+-2 Do not use propane",ENERGY BILLS,
+FOPAY,Num,Who pays for fuel oil,"1 Household is responsible for paying for all fuel oil used in this home
+2 All fuel oil used in this home is included in the rent or condo fee
+3 Some is paid by the household, some is included in the rent or condo fee
+99 Other 
+-2 Do not use fuel oil",ENERGY BILLS,
+SMARTMETER,Num,Home has an electricity smart meter,"1 Yes
+0 No
+-4 Don't Know",ENERGY BILLS,
+INTDATAACC,Num,Household member has viewed smart meter interval data,"1 Yes
+0 No
+-2 Not applicable",ENERGY BILLS,
+MEDICALDEV,Num,Any medical devices used at home,"1 Yes
+0 No",ENERGY BILLS,
+POWEROUT,Num,Any power outages for at least 24 hours in the past year,"1 Yes
+0 No",ENERGY BILLS,
+WHYPOWEROUT,Num,Reason for power outage,"1 Natural disaster or weather event
+2 Unable to pay electric bills
+3 Electric utility had a planned or unplanned blackout
+99 Other
+-2 No power outage ",ENERGY BILLS,
+BACKUP,Num,Has back-up generator,"1 Yes
+0 No",ENERGY BILLS,
+SOLAR,Num,On-site electricity generation from solar; 'Not applicable' applies to apartment buildings with 2 or more units.,"1 Yes
+0 No
+-2 Not applicable",ENERGY BILLS,
+OUTLET,Num,Parks vehicle within 20 feet of an outlet,"1 Yes
+0 No
+-2 Not applicable",ENERGY BILLS,
+ELECVEH,Num,Household owns or leases an electric vehicle,"1 Yes
+0 No",ENERGY BILLS,
+EVCHRGHOME,Num,EV is charged at home,"1 Yes
+0 No
+-2 Not applicable
+""."" Missing",ENERGY BILLS,
+ELOTHER,Num,"Electricity used, other than for space heating, water heating, air conditioning, or cooking; a derived variable",1 Yes,ENERGY BILLS,
+UGOTH,Num,"Natural gas used, other than for space heating, water heating, or cooking; a derived variable","1 Yes
+0 No",ENERGY BILLS,
+LPOTHER,Num,"Propane used, other than for space heating, water heating, or cooking; a derived variable","1 Yes
+0 No",ENERGY BILLS,
+FOOTHER,Num,"Fuel oil used, other than for space heating or water heating; a derived variable","1 Yes
+0 No",ENERGY BILLS,
+USEEL,Num,Electricity used; a derived variable,1 Yes,ENERGY BILLS,
+USENG,Num,Natural gas used; a derived variable,"1 Yes
+0 No",ENERGY BILLS,
+USELP,Num,Propane used; a derived variable,"1 Yes
+0 No",ENERGY BILLS,
+USEFO,Num,Fuel oil used; a derived variable,"1 Yes
+0 No",ENERGY BILLS,
+USESOLAR,Num,Solar thermal used; a derived variable,"1 Yes
+0 No",ENERGY BILLS,
+USEWOOD,Num,Wood used; a derived variable,"1 Yes
+0 No",ENERGY BILLS,
+ALLELEC,Num,"Household only uses electricity. Does not use natural gas, propane, fuel oil, or wood; a derived variable","1 Yes
+0 No",ENERGY BILLS,
+HHSEX,Num,Respondent sex,"1 Female
+2 Male",HOUSEHOLD CHARACTERISTICS,
+HHAGE,Num,Respondent age (top-coded),18 - 90,HOUSEHOLD CHARACTERISTICS,
+EMPLOYHH,Num,Respondent employment status,"1 Employed full-time
+2 Employed part-time
+3 Retired
+4 Not employed",HOUSEHOLD CHARACTERISTICS,
+EDUCATION,Num,Highest level of education completed by respondent,"1 Less than high school diploma or GED
+2 High school diploma or GED
+3 Some college or Associate’s degree
+4 Bachelor’s degree
+5 Master’s, Professional, or Doctoral degree ",HOUSEHOLD CHARACTERISTICS,
+SDESCENT,Num,Respondent is Hispanic or Latino,"1 Yes
+0 No",HOUSEHOLD CHARACTERISTICS,
+HOUSEHOLDER_RACE,Num,Householder (respondent) race,"1 White Alone
+2 Black or African/American Alone
+3 American Indian or Alaska Native Alone
+4 Asian Alone
+5 Native Hawaiian or Other Pacific Islander Alone
+6 2 or More Races Selected",HOUSEHOLD CHARACTERISTICS,
+NHSLDMEM,Num,Number of household members (top-coded),1 - 7,HOUSEHOLD CHARACTERISTICS,
+NUMCHILD,Num,Number of household members age 17 or younger (top-coded),0 - 4,HOUSEHOLD CHARACTERISTICS,
+NUMADULT1,Num,Number of household members age 18 to 64,1 - 7,HOUSEHOLD CHARACTERISTICS,
+NUMADULT2,Num,Number of household members age 65 or older,0 - 6,HOUSEHOLD CHARACTERISTICS,
+ATHOME,Num,Number of weekdays someone is at home most or all of the day,"0 None
+1 1 day
+2 2 days
+3 3 days
+4 4 days
+5 5 days",HOUSEHOLD CHARACTERISTICS,
+MONEYPY,Num,Annual gross household income for the past year,"1 Less than $5,000
+2 $5,000 - $7,499
+3 $7,500 - $9,999
+4 $10,000 - $12,499
+5 $12,500 - $14,999
+6 $15,000 - $19,999
+7 $20,000 - $24,999
+8 $25,000 - $29,999
+9 $30,000 - $34,999
+10 $35,000 - $39,999
+11 $40,000 - $49,999
+12 $50,000 - $59,999
+13 $60,000 - $74,999
+14 $75,000 - $99,999
+15 $100,000 - $149,999
+16 $150,000 or more",HOUSEHOLD CHARACTERISTICS,
+SCALEB,Num,Frequency of reducing or forgoing basic necessities due to home energy bill,"1 Almost every month
+2 Some months
+3 1 or 2 months
+0 Never",ENERGY ASSISTANCE,
+SCALEG,Num,Frequency of keeping home at unhealthy temperature,"1 Almost every month
+2 Some months
+3 1 or 2 months
+0 Never",ENERGY ASSISTANCE,
+SCALEE,Num,Frequency of receiving disconnection notice,"1 Almost every month
+2 Some months
+3 1 or 2 months
+0 Never",ENERGY ASSISTANCE,
+PAYHELP,Num,Received energy assistance to help pay energy bills after disconnection notice,"1 Yes
+0 No
+-2 Not applicable",ENERGY ASSISTANCE,
+NOHEATBROKE,Num,Unable to use heating equipment in the past year because equipment was broken and could not afford repair or replacement,"1 Yes
+0 No",ENERGY ASSISTANCE,
+NOHEATEL,Num,Unable to use heating equipment in the past year because could not afford electricity and it was disconnected,"1 Yes
+0 No",ENERGY ASSISTANCE,
+NOHEATNG,Num,Unable to use heating equipment in the past year because could not afford natural gas and it was disconnected,"1 Yes
+0 No",ENERGY ASSISTANCE,
+NOHEATBULK,Num,Unable to use heating equipment in the past year because could not afford bulk fuel delivery,"1 Yes
+0 No",ENERGY ASSISTANCE,
+NOHEATDAYS,Num,Number of days unable to use heating equipment in the past year,"1 - 366
+-2 Not applicable",ENERGY ASSISTANCE,
+NOHEATHELP,Num,Received energy assistance to help restore heating,"1 Yes
+0 No
+-2 Not applicable",ENERGY ASSISTANCE,
+COLDMA,Num,Medical attention needed because home was too cold,"1 Yes
+0 No",ENERGY ASSISTANCE,
+NOACBROKE,Num,Unable to use air conditioning equipment in the past year because equipment was broken and could not afford repair or replacement,"1 Yes
+0 No",ENERGY ASSISTANCE,
+NOACEL,Num,Unable to use air conditioning equipment in the past year because could not afford electricity and it was disconnected,"1 Yes
+0 No",ENERGY ASSISTANCE,
+NOACDAYS,Num,Number of days unable to use air conditioning equipment in the past year,"1 - 366
+-2 Not applicable",ENERGY ASSISTANCE,
+NOACHELP,Num,Received energy assistance to help restore air conditioning,"1 Yes
+0 No
+-2 Not applicable",ENERGY ASSISTANCE,
+HOTMA,Num,Medical attention needed because home was too hot,"1 Yes
+0 No",ENERGY ASSISTANCE,
+ENERGYASST,Num,Ever participated in home energy assistance program,"1 Yes
+0 No",ENERGY ASSISTANCE,
+ENERGYASST20,Num,Received home energy assistance in 2020,"1 Yes
+0 No
+-2 Not applicable",ENERGY ASSISTANCE,
+ENERGYASST19,Num,Received home energy assistance in 2019,"1 Yes
+0 No
+-2 Not applicable",ENERGY ASSISTANCE,
+ENERGYASST18,Num,Received home energy assistance in 2018,"1 Yes
+0 No
+-2 Not applicable",ENERGY ASSISTANCE,
+ENERGYASST17,Num,Received home energy assistance in 2017,"1 Yes
+0 No
+-2 Not applicable",ENERGY ASSISTANCE,
+ENERGYASST16,Num,Received home energy assistance in 2016,"1 Yes
+0 No
+-2 Not applicable",ENERGY ASSISTANCE,
+ENERGYASSTOTH,Num,Received home energy assistance in some other year,"1 Yes
+0 No
+-2 Not applicable",ENERGY ASSISTANCE,
+SQFTRANGE,Num,Respondent-reported square footage range,"1 Less than 600 square feet
+2 600 to 799 square feet
+3 800 to 999 square feet
+4 1,000 to 1,499 square feet
+5 1,500 to 1,999 square feet
+6 2,000 to 2,499 square feet
+7 2,500 to 2,999 square feet
+8 3,000 square feet or more",YOUR HOME,
+SQFTINCB,Num,Respondent-reported square footage includes basement,"1 Yes
+0 No
+-2 Not applicable",YOUR HOME,
+SQFTINCA,Num,Respondent-reported square footage includes attic,"1 Yes
+0 No
+-2 Not applicable",YOUR HOME,
+SQFTINCG,Num,Respondent-reported square footage includes garage,"1 Yes
+0 No
+-2 Not applicable",YOUR HOME,
+SQFTEST,Num,Respondent-reported square footage (rounded to the nearest 10),240-15000,YOUR HOME,
+TOTSQFT_EN,Num,"Total energy-consuming area (square footage) of the housing unit. Includes all main living areas; all basements; heated, cooled, or finished attics; and heating or cooled garages. For single-family housing units this is derived using the respondent-reported square footage (SQFTEST) and adjusted using the ""include"" variables (e.g., SQFTINCB), where applicable. For apartments and mobile homes this is the respondent-reported square footage. A derived variable rounded to the nearest 10",200-15000,YOUR HOME,
+TOTHSQFT,Num,Square footage of the housing unit that is heated by space heating equipment. A derived variable rounded to the nearest 10,0-15000,YOUR HOME,
+TOTCSQFT,Num,"Square footage of the housing unit that is cooled by air-conditioning equipment or evaporative cooler, a derived variable rounded to the nearest 10",0-14600,YOUR HOME,
+ZACEQUIPAGE,Num,Imputation indicator for ACEQUIPAGE,"1 Imputed
+0 Not imputed
+-2 Not applicable",AIR CONDITIONING,
+ZADQINSUL,Num,Imputation indicator for ADQINSUL,"1 Imputed
+0 Not imputed",YOUR HOME,
+ZAGECDRYER,Num,Imputation indicator for AGECDRYER,"1 Imputed
+0 Not imputed
+-2 Not applicable",APPLIANCES,
+ZAGECWASH,Num,Imputation indicator for AGECWASH,"1 Imputed
+0 Not imputed
+-2 Not applicable",APPLIANCES,
+ZAGEDW,Num,Imputation indicator for AGEDW,"1 Imputed
+0 Not imputed
+-2 Not applicable",APPLIANCES,
+ZAGEFRZR,Num,Imputation indicator for AGEFRZR,"1 Imputed
+0 Not imputed
+-2 Not applicable",APPLIANCES,
+ZAGERFRI1,Num,Imputation indicator for AGERFRI1,"1 Imputed
+0 Not imputed
+-2 Not applicable",APPLIANCES,
+ZAGERFRI2,Num,Imputation indicator for AGERFRI2,"1 Imputed
+0 Not imputed
+-2 Not applicable",APPLIANCES,
+ZAIRCOND,Num,Imputation indicator for AIRCOND,"1 Imputed
+0 Not imputed",AIR CONDITIONING,
+ZAMTMICRO,Num,Imputation indicator for AMTMICRO,"1 Imputed
+0 Not imputed
+-2 Not applicable",APPLIANCES,
+ZATHOME,Num,Imputation indicator for ATHOME,"1 Imputed
+0 Not imputed",HOUSEHOLD CHARACTERISTICS,
+ZATTCCOOL,Num,Imputation indicator for ATTCCOOL,"1 Imputed
+0 Not imputed
+-2 Not applicable",AIR CONDITIONING,
+ZATTCHEAT,Num,Imputation indicator for ATTCHEAT,"1 Imputed
+0 Not imputed
+-2 Not applicable",SPACE HEATING,
+ZATTIC,Num,Imputation indicator for ATTIC,"1 Imputed
+0 Not imputed
+-2 Not applicable",YOUR HOME,
+ZATTICFAN,Num,Imputation indicator for ATTICFAN,"1 Imputed
+0 Not imputed
+-2 Not applicable",AIR CONDITIONING,
+ZATTICFIN,Num,Imputation indicator for ATTICFIN,"1 Imputed
+0 Not imputed
+-2 Not applicable",YOUR HOME,
+ZBACKUP,Num,Imputation indicator for BACKUP,"1 Imputed
+0 Not imputed",ENERGY BILLS,
+ZBASECOOL,Num,Imputation indicator for BASECOOL,"1 Imputed
+0 Not imputed
+-2 Not applicable",AIR CONDITIONING,
+ZBASEFIN,Num,Imputation indicator for BASEFIN,"1 Imputed
+0 Not imputed
+-2 Not applicable",YOUR HOME,
+ZBASEHEAT,Num,Imputation indicator for BASEHEAT,"1 Imputed
+0 Not imputed
+-2 Not applicable",SPACE HEATING,
+ZBASEOTH,Num,Imputation indicator for BASEOTH,"1 Imputed
+0 Not imputed
+-2 Not applicable",YOUR HOME,
+ZBEDROOMS,Num,Imputation indicator for BEDROOMS,"1 Imputed
+0 Not imputed",YOUR HOME,
+ZBLENDER,Num,Imputation indicator for BLENDER,"1 Imputed
+0 Not imputed",APPLIANCES,
+ZCABLESAT,Num,Imputation indicator for CABLESAT,"1 Imputed
+0 Not imputed
+-2 Not applicable",ELECTRONICS,
+ZCELLAR,Num,Imputation indicator for CELLAR,"1 Imputed
+0 Not imputed
+-2 Not applicable",YOUR HOME,
+ZCELLPHONE,Num,Imputation indicator for CELLPHONE,"1 Imputed
+0 Not imputed",ELECTRONICS,
+ZCOLDMA,Num,Imputation indicator for COLDMA,"1 Imputed
+0 Not imputed",ENERGY ASSISTANCE,
+ZCOMBODVR,Num,Imputation indicator for COMBODVR,"1 Imputed
+0 Not imputed
+-2 Not applicable",ELECTRONICS,
+ZCONCRETE,Num,Imputation indicator for CONCRETE,"1 Imputed
+0 Not imputed
+-2 Not applicable",YOUR HOME,
+ZCOOKTOP,Num,Imputation indicator for COOKTOP,"1 Imputed
+0 Not imputed",APPLIANCES,
+ZCOOKTOPFUEL,Num,Imputation indicator for COOKTOPFUEL,"1 Imputed
+0 Not imputed
+-2 Not applicable",APPLIANCES,
+ZCOOKTOPINDT,Num,Imputation indicator for COOKTOPINDT,"1 Imputed
+0 Not imputed
+-2 Not applicable",APPLIANCES,
+ZCOOKTOPUSE,Num,Imputation indicator for COOKTOPUSE,"1 Imputed
+0 Not imputed
+-2 Not applicable",APPLIANCES,
+ZCOOLAPT,Num,Imputation indicator for COOLAPT,"1 Imputed
+0 Not imputed
+-2 Not applicable",AIR CONDITIONING,
+ZCOOLCNTL,Num,Imputation indicator for COOLCNTL,"1 Imputed
+0 Not imputed
+-2 Not applicable",AIR CONDITIONING,
+ZCRAWL,Num,Imputation indicator for CRAWL,"1 Imputed
+0 Not imputed
+-2 Not applicable",YOUR HOME,
+ZCROCKPOT,Num,Imputation indicator for CROCKPOT,"1 Imputed
+0 Not imputed",APPLIANCES,
+ZCWASHER,Num,Imputation indicator for CWASHER,"1 Imputed
+0 Not imputed",APPLIANCES,
+ZDEHUMTYPE,Num,Imputation indicator for DEHUMTYPE,"1 Imputed
+0 Not imputed",AIR CONDITIONING,
+ZDESKTOP,Num,Imputation indicator for DESKTOP,"1 Imputed
+0 Not imputed",ELECTRONICS,
+ZDISHWASH,Num,Imputation indicator for DISHWASH,"1 Imputed
+0 Not imputed",APPLIANCES,
+ZDOOR1SUM,Num,Imputation indicator for DOOR1SUM,"1 Imputed
+0 Not imputed",YOUR HOME,
+ZDRAFTY,Num,Imputation indicator for DRAFTY,"1 Imputed
+0 Not imputed",YOUR HOME,
+ZDRYER,Num,Imputation indicator for DRYER,"1 Imputed
+0 Not imputed",APPLIANCES,
+ZDRYRFUEL,Num,Imputation indicator for DRYRFUEL,"1 Imputed
+0 Not imputed
+-2 Not applicable",APPLIANCES,
+ZDRYRUSE,Num,Imputation indicator for DRYRUSE,"1 Imputed
+0 Not imputed
+-2 Not applicable",APPLIANCES,
+ZDVD,Num,Imputation indicator for DVD,"1 Imputed
+0 Not imputed
+-2 Not applicable",ELECTRONICS,
+ZDWASHUSE,Num,Imputation indicator for DWASHUSE,"1 Imputed
+0 Not imputed
+-2 Not applicable",APPLIANCES,
+ZDWCYCLE,Num,Imputation indicator for DWCYCLE,"1 Imputed
+0 Not imputed
+-2 Not applicable",APPLIANCES,
+ZEDUCATION,Num,Imputation indicator for EDUCATION,"1 Imputed
+0 Not imputed",HOUSEHOLD CHARACTERISTICS,
+ZELPAY,Num,Imputation indicator for ELPAY,"1 Imputed
+0 Not imputed",ENERGY BILLS,
+ZELPERIPH,Num,Imputation indicator for ELPERIPH,"1 Imputed
+0 Not imputed
+-2 Not applicable",ELECTRONICS,
+ZEMPLOYHH,Num,Imputation indicator for EMPLOYHH,"1 Imputed
+0 Not imputed",HOUSEHOLD CHARACTERISTICS,
+ZENERGYASST,Num,Imputation indicator for ENERGYASST,"1 Imputed
+0 Not imputed",ENERGY ASSISTANCE,
+ZENERGYASST16,Num,Imputation indicator for ENERGYASST16,"1 Imputed
+0 Not imputed
+-2 Not applicable",ENERGY ASSISTANCE,
+ZENERGYASST17,Num,Imputation indicator for ENERGYASST17,"1 Imputed
+0 Not imputed
+-2 Not applicable",ENERGY ASSISTANCE,
+ZENERGYASST18,Num,Imputation indicator for ENERGYASST18,"1 Imputed
+0 Not imputed
+-2 Not applicable",ENERGY ASSISTANCE,
+ZENERGYASST19,Num,Imputation indicator for ENERGYASST19,"1 Imputed
+0 Not imputed
+-2 Not applicable",ENERGY ASSISTANCE,
+ZENERGYASST20,Num,Imputation indicator for ENERGYASST20,"1 Imputed
+0 Not imputed
+-2 Not applicable",ENERGY ASSISTANCE,
+ZENERGYASSTOTH,Num,Imputation indicator for ENERGYASSTOTH,"1 Imputed
+0 Not imputed
+-2 Not applicable",ENERGY ASSISTANCE,
+ZEQUIPAGE,Num,Imputation indicator for EQUIPAGE,"1 Imputed
+0 Not imputed
+-2 Not applicable",SPACE HEATING,
+ZEQUIPAUXTYPE,Num,Imputation indicator for EQUIPAUXTYPE,"1 Imputed
+0 Not imputed
+-2 Not applicable",SPACE HEATING,
+ZEQUIPM,Num,Imputation indicator for EQUIPM,"1 Imputed
+0 Not imputed
+-2 Not applicable",SPACE HEATING,
+ZFOPAY,Num,Imputation indicator for FOPAY,"1 Imputed
+0 Not imputed
+-2 Not applicable",ENERGY BILLS,
+ZFREEZER,Num,Imputation indicator for FREEZER,"1 Imputed
+0 Not imputed
+-2 Not applicable",APPLIANCES,
+ZFUELAUX,Num,Imputation indicator for FUELAUX,"1 Imputed
+0 Not imputed
+-2 Not applicable",SPACE HEATING,
+ZFUELH2O,Num,Imputation indicator for FUELH2O,"1 Imputed
+0 Not imputed",WATER HEATING,
+ZFUELH2O2,Num,Imputation indicator for FUELH2O2,"1 Imputed
+0 Not imputed
+-2 Not applicable",WATER HEATING,
+ZFUELHEAT,Num,Imputation indicator for FUELHEAT,"1 Imputed
+0 Not imputed
+-2 Not applicable",SPACE HEATING,
+ZFUELPOOL,Num,Imputation indicator for FUELPOOL,"1 Imputed
+0 Not imputed
+-2 Not applicable",YOUR HOME,
+ZFUELTUB,Num,Imputation indicator for FUELTUB,"1 Imputed
+0 Not imputed
+-2 Not applicable",YOUR HOME,
+ZGARGCOOL,Num,Imputation indicator for GARGCOOL,"1 Imputed
+0 Not imputed
+-2 Not applicable",AIR CONDITIONING,
+ZGARGHEAT,Num,Imputation indicator for GARGHEAT,"1 Imputed
+0 Not imputed
+-2 Not applicable",SPACE HEATING,
+ZH2OAPT,Num,Imputation indicator for H2OAPT,"1 Imputed
+0 Not imputed
+-2 Not applicable",WATER HEATING,
+ZH2OMAIN,Num,Imputation indicator for H2OMAIN,"1 Imputed
+0 Not imputed
+-2 Not applicable",WATER HEATING,
+ZHEATAPT,Num,Imputation indicator for HEATAPT,"1 Imputed
+0 Not imputed
+-2 Not applicable",SPACE HEATING,
+ZHEATCNTL,Num,Imputation indicator for HEATCNTL,"1 Imputed
+0 Not imputed
+-2 Not applicable",THERMOSTAT,
+ZHEATHOME,Num,Imputation indicator for HEATHOME,"1 Imputed
+0 Not imputed",SPACE HEATING,
+ZHHAGE,Num,Imputation indicator for HHAGE,"1 Imputed
+0 Not imputed",HOUSEHOLD CHARACTERISTICS,
+ZHHSEX,Num,Imputation indicator for HHSEX,"1 Imputed
+0 Not imputed",HOUSEHOLD CHARACTERISTICS,
+ZHIGHCEIL,Num,Imputation indicator for HIGHCEIL,"1 Imputed
+0 Not imputed
+-2 Not applicable",YOUR HOME,
+ZHOTMA,Num,Imputation indicator for HOTMA,"1 Imputed
+0 Not imputed",ENERGY ASSISTANCE,
+ZHOUSEFAN,Num,Imputation indicator for HOUSEFAN,"1 Imputed
+0 Not imputed
+-2 Not applicable",AIR CONDITIONING,
+ZHUMIDTYPE,Num,Imputation indicator for HUMIDTYPE,"1 Imputed
+0 Not imputed",SPACE HEATING,
+ZICE,Num,Imputation indicator for ICE,"1 Imputed
+0 Not imputed
+-2 Not applicable",APPLIANCES,
+ZINTERNET,Num,Imputation indicator for INTERNET,"1 Imputed
+0 Not imputed",ELECTRONICS,
+ZINTSTREAM,Num,Imputation indicator for INTSTREAM,"1 Imputed
+0 Not imputed
+-2 Not applicable",ELECTRONICS,
+ZINTYPEBROAD,Num,Imputation indicator for INTYPEBROAD,"1 Imputed
+0 Not imputed
+-2 Not applicable",ELECTRONICS,
+ZINTYPECELL,Num,Imputation indicator for INTYPECELL,"1 Imputed
+0 Not imputed
+-2 Not applicable",ELECTRONICS,
+ZINTYPEOTH,Num,Imputation indicator for INTYPEOTH,"1 Imputed
+0 Not imputed
+-2 Not applicable",ELECTRONICS,
+ZKOWNRENT,Num,Imputation indicator for KOWNRENT,"1 Imputed
+0 Not imputed",YOUR HOME,
+ZLGTIN1TO4,Num,Imputation indicator for LGTIN1TO4,"1 Imputed
+0 Not imputed",LIGHTING,
+ZLGTIN4TO8,Num,Imputation indicator for LGTIN4TO8,"1 Imputed
+0 Not imputed",LIGHTING,
+ZLGTINCAN,Num,Imputation indicator for LGTINCAN,"1 Imputed
+0 Not imputed",LIGHTING,
+ZLGTINCFL,Num,Imputation indicator for LGTINCFL,"1 Imputed
+0 Not imputed",LIGHTING,
+ZLGTINLED,Num,Imputation indicator for LGTINLED,"1 Imputed
+0 Not imputed",LIGHTING,
+ZLGTINMORE8,Num,Imputation indicator for LGTINMORE8,"1 Imputed
+0 Not imputed",LIGHTING,
+ZLGTOUTANY,Num,Imputation indicator for LGTOUTANY,"1 Imputed
+0 Not imputed",LIGHTING,
+ZLGTOUTCAN,Num,Imputation indicator for LGTOUTCAN,"1 Imputed
+0 Not imputed
+-2 Not applicable",LIGHTING,
+ZLGTOUTCFL,Num,Imputation indicator for LGTOUTCFL,"1 Imputed
+0 Not imputed
+-2 Not applicable",LIGHTING,
+ZLGTOUTLED,Num,Imputation indicator for LGTOUTLED,"1 Imputed
+0 Not imputed
+-2 Not applicable",LIGHTING,
+ZLGTOUTNITE,Num,Imputation indicator for LGTOUTNITE,"1 Imputed
+0 Not imputed
+-2 Not applicable",LIGHTING,
+ZLOCRFRI2,Num,Imputation indicator for LOCRFRI2,"1 Imputed
+0 Not imputed
+-2 Not applicable",APPLIANCES,
+ZLPGPAY,Num,Imputation indicator for LPGPAY,"1 Imputed
+0 Not imputed
+-2 Not applicable",ENERGY BILLS,
+ZMICRO,Num,Imputation indicator for MICRO,"1 Imputed
+0 Not imputed",APPLIANCES,
+ZMONEYPY,Num,Imputation indicator for MONEYPY,"1 Imputed
+0 Not imputed",HOUSEHOLD CHARACTERISTICS,
+ZMONPOOL,Num,Imputation indicator for MONPOOL,"1 Imputed
+0 Not imputed
+-2 Not applicable",YOUR HOME,
+ZMONTUB,Num,Imputation indicator for MONTUB,"1 Imputed
+0 Not imputed
+-2 Not applicable",YOUR HOME,
+ZMORETHAN1H2O,Num,Imputation indicator for MORETHAN1H2O,"1 Imputed
+0 Not imputed",WATER HEATING,
+ZNCOMBATH,Num,Imputation indicator for NCOMBATH,"1 Imputed
+0 Not imputed",YOUR HOME,
+ZNGPAY,Num,Imputation indicator for NGPAY,"1 Imputed
+0 Not imputed
+-2 Not applicable",ENERGY BILLS,
+ZNHAFBATH,Num,Imputation indicator for NHAFBATH,"1 Imputed
+0 Not imputed",YOUR HOME,
+ZNHSLDMEM,Num,Imputation indicator for NHSLDMEM,"1 Imputed
+0 Not imputed",HOUSEHOLD CHARACTERISTICS,
+ZNOACBROKE,Num,Imputation indicator for NOACBROKE,"1 Imputed
+0 Not imputed",ENERGY ASSISTANCE,
+ZNOACDAYS,Num,Imputation indicator for NOACDAYS,"1 Imputed
+0 Not imputed
+-2 Not applicable",ENERGY ASSISTANCE,
+ZNOACEL,Num,Imputation indicator for NOACEL,"1 Imputed
+0 Not imputed",ENERGY ASSISTANCE,
+ZNOACHELP,Num,Imputation indicator for NOACHELP,"1 Imputed
+0 Not imputed
+-2 Not applicable",ENERGY ASSISTANCE,
+ZNOHEATBROKE,Num,Imputation indicator for NOHEATBROKE,"1 Imputed
+0 Not imputed",ENERGY ASSISTANCE,
+ZNOHEATBULK,Num,Imputation indicator for NOHEATBULK,"1 Imputed
+0 Not imputed",ENERGY ASSISTANCE,
+ZNOHEATDAYS,Num,Imputation indicator for NOHEATDAYS,"1 Imputed
+0 Not imputed
+-2 Not applicable",ENERGY ASSISTANCE,
+ZNOHEATEL,Num,Imputation indicator for NOHEATEL,"1 Imputed
+0 Not imputed",ENERGY ASSISTANCE,
+ZNOHEATHELP,Num,Imputation indicator for NOHEATHELP,"1 Imputed
+0 Not imputed
+-2 Not applicable",ENERGY ASSISTANCE,
+ZNOHEATNG,Num,Imputation indicator for NOHEATNG,"1 Imputed
+0 Not imputed",ENERGY ASSISTANCE,
+ZNUMADULT1,Num,Imputation indicator for NUMADULT1,"1 Imputed
+0 Not imputed",HOUSEHOLD CHARACTERISTICS,
+ZNUMADULT2,Num,Imputation indicator for NUMADULT2,"1 Imputed
+0 Not imputed",HOUSEHOLD CHARACTERISTICS,
+ZNUMCFAN,Num,Imputation indicator for NUMCFAN,"1 Imputed
+0 Not imputed",AIR CONDITIONING,
+ZNUMCHILD,Num,Imputation indicator for NUMCHILD,"1 Imputed
+0 Not imputed",HOUSEHOLD CHARACTERISTICS,
+ZNUMDLHP,Num,Imputation indicator for NUMDLHP,"1 Imputed
+0 Not imputed
+-2 Not applicable",SPACE HEATING,
+ZNUMDLHPAC,Num,Imputation indicator for NUMDLHPAC,"1 Imputed
+0 Not imputed
+-2 Not applicable",AIR CONDITIONING,
+ZNUMFIREPLC,Num,Imputation indicator for NUMFIREPLC,"1 Imputed
+0 Not imputed
+-2 Not applicable",SPACE HEATING,
+ZNUMFLOORFAN,Num,Imputation indicator for NUMFLOORFAN,"1 Imputed
+0 Not imputed",AIR CONDITIONING,
+ZNUMFREEZ,Num,Imputation indicator for NUMFREEZ,"1 Imputed
+0 Not imputed",APPLIANCES,
+ZNUMFRIG,Num,Imputation indicator for NUMFRIG,"1 Imputed
+0 Not imputed",APPLIANCES,
+ZNUMLAPTOP,Num,Imputation indicator for NUMLAPTOP,"1 Imputed
+0 Not imputed",ELECTRONICS,
+ZNUMMEAL,Num,Imputation indicator for NUMMEAL,"1 Imputed
+0 Not imputed",APPLIANCES,
+ZNUMPORTAC,Num,Imputation indicator for NUMPORTAC,"1 Imputed
+0 Not imputed
+-2 Not applicable",AIR CONDITIONING,
+ZNUMPORTDEHUM,Num,Imputation indicator for NUMPORTDEHUM,"1 Imputed
+0 Not imputed
+-2 Not applicable",AIR CONDITIONING,
+ZNUMPORTEL,Num,Imputation indicator for NUMPORTEL,"1 Imputed
+0 Not imputed
+-2 Not applicable",SPACE HEATING,
+ZNUMPORTHUM,Num,Imputation indicator for NUMPORTHUM,"1 Imputed
+0 Not imputed
+-2 Not applicable",SPACE HEATING,
+ZNUMSMPHONE,Num,Imputation indicator for NUMSMPHONE,"1 Imputed
+0 Not imputed",ELECTRONICS,
+ZNUMTABLET,Num,Imputation indicator for NUMTABLET,"1 Imputed
+0 Not imputed",ELECTRONICS,
+ZNUMWWAC,Num,Imputation indicator for NUMWWAC,"1 Imputed
+0 Not imputed
+-2 Not applicable",AIR CONDITIONING,
+ZONLNEDUC,Num,Imputation indicator for ONLNEDUC,"1 Imputed
+0 Not imputed",ELECTRONICS,
+ZORIGWIN,Num,Imputation indicator for ORIGWIN,"1 Imputed
+0 Not imputed",YOUR HOME,
+ZOTHROOMS,Num,Imputation indicator for OTHROOMS,"1 Imputed
+0 Not imputed",YOUR HOME,
+ZOUTGRILLFUEL,Num,Imputation indicator for OUTGRILLFUEL,"1 Imputed
+0 Not imputed
+-2 Not applicable",APPLIANCES,
+ZOUTLET,Num,Imputation indicator for OUTLET,"1 Imputed
+0 Not imputed
+-2 Not applicable",ENERGY BILLS,
+ZOVEN,Num,Imputation indicator for OVEN,"1 Imputed
+0 Not imputed",APPLIANCES,
+ZOVENFUEL,Num,Imputation indicator for OVENFUEL,"1 Imputed
+0 Not imputed
+-2 Not applicable",APPLIANCES,
+ZOVENUSE,Num,Imputation indicator for OVENUSE,"1 Imputed
+0 Not imputed
+-2 Not applicable",APPLIANCES,
+ZPAYHELP,Num,Imputation indicator for PAYHELP,"1 Imputed
+0 Not imputed
+-2 Not applicable",ENERGY ASSISTANCE,
+ZPLAYSTA,Num,Imputation indicator for PLAYSTA,"1 Imputed
+0 Not imputed
+-2 Not applicable",ELECTRONICS,
+ZPOOLPUMP,Num,Imputation indicator for POOLPUMP,"1 Imputed
+0 Not imputed
+-2 Not applicable",YOUR HOME,
+ZPOWEROUT,Num,Imputation indicator for POWEROUT,"1 Imputed
+0 Not imputed",ENERGY BILLS,
+ZPRKGPLC1,Num,Imputation indicator for PRKGPLC1,"1 Imputed
+0 Not imputed
+-2 Not applicable",YOUR HOME,
+ZPRSSCOOK,Num,Imputation indicator for PRSSCOOK,"1 Imputed
+0 Not imputed",APPLIANCES,
+ZRANGE,Num,Imputation indicator for RANGE,"1 Imputed
+0 Not imputed",APPLIANCES,
+ZRANGEFUEL,Num,Imputation indicator for RANGEFUEL,"1 Imputed
+0 Not imputed
+-2 Not applicable",APPLIANCES,
+ZRANGEINDT,Num,Imputation indicator for RANGEINDT,"1 Imputed
+0 Not imputed
+-2 Not applicable",APPLIANCES,
+ZRCOOKUSE,Num,Imputation indicator for RCOOKUSE,"1 Imputed
+0 Not imputed
+-2 Not applicable",APPLIANCES,
+ZRECBATH,Num,Imputation indicator for RECBATH,"1 Imputed
+0 Not imputed",YOUR HOME,
+ZRICECOOK,Num,Imputation indicator for RICECOOK,"1 Imputed
+0 Not imputed",APPLIANCES,
+ZROOFTYPE,Num,Imputation indicator for ROOFTYPE,"1 Imputed
+0 Not imputed
+-2 Not applicable",YOUR HOME,
+ZROVENUSE,Num,Imputation indicator for ROVENUSE,"1 Imputed
+0 Not imputed
+-2 Not applicable",APPLIANCES,
+ZSCALEB,Num,Imputation indicator for SCALEB,"1 Imputed
+0 Not imputed",ENERGY ASSISTANCE,
+ZSCALEE,Num,Imputation indicator for SCALEE,"1 Imputed
+0 Not imputed",ENERGY ASSISTANCE,
+ZSCALEG,Num,Imputation indicator for SCALEG,"1 Imputed
+0 Not imputed",ENERGY ASSISTANCE,
+ZSDESCENT,Num,Imputation indicator for SDESCENT,"1 Imputed
+0 Not imputed",HOUSEHOLD CHARACTERISTICS,
+ZSEPDVR,Num,Imputation indicator for SEPDVR,"1 Imputed
+0 Not imputed
+-2 Not applicable",ELECTRONICS,
+ZSIZEOFGARAGE,Num,Imputation indicator for SIZEOFGARAGE,"1 Imputed
+0 Not imputed
+-2 Not applicable",YOUR HOME,
+ZSIZFREEZ,Num,Imputation indicator for SIZFREEZ,"1 Imputed
+0 Not imputed
+-2 Not applicable",APPLIANCES,
+ZSIZRFRI1,Num,Imputation indicator for SIZRFRI1,"1 Imputed
+0 Not imputed
+-2 Not applicable",APPLIANCES,
+ZSIZRFRI2,Num,Imputation indicator for SIZRFRI2,"1 Imputed
+0 Not imputed
+-2 Not applicable",APPLIANCES,
+ZSMARTSPK,Num,Imputation indicator for SMARTSPK,"1 Imputed
+0 Not imputed
+-2 Not applicable",ELECTRONICS,
+ZSQFTEST,Num,Imputation indicator for SQFTEST,"1 Imputed
+0 Not imputed",YOUR HOME,
+ZSQFTINCA,Num,Imputation indicator for SQFTINCA,"1 Imputed
+0 Not imputed
+-2 Not applicable",YOUR HOME,
+ZSQFTINCB,Num,Imputation indicator for SQFTINCB,"1 Imputed
+0 Not imputed
+-2 Not applicable",YOUR HOME,
+ZSQFTINCG,Num,Imputation indicator for SQFTINCG,"1 Imputed
+0 Not imputed
+-2 Not applicable",YOUR HOME,
+ZSQFTRANGE,Num,Imputation indicator for SQFTRANGE,"1 Imputed
+0 Not imputed",YOUR HOME,
+ZSSLIGHT,Num,Imputation indicator for SSLIGHT,"1 Imputed
+0 Not imputed
+-2 Not applicable",ELECTRONICS,
+ZSSOTHER,Num,Imputation indicator for SSOTHER,"1 Imputed
+0 Not imputed
+-2 Not applicable",ELECTRONICS,
+ZSSSECURE,Num,Imputation indicator for SSSECURE,"1 Imputed
+0 Not imputed
+-2 Not applicable",ELECTRONICS,
+ZSSTEMP,Num,Imputation indicator for SSTEMP,"1 Imputed
+0 Not imputed
+-2 Not applicable",ELECTRONICS,
+ZSSTV,Num,Imputation indicator for SSTV,"1 Imputed
+0 Not imputed
+-2 Not applicable",ELECTRONICS,
+ZSTORIES,Num,Imputation indicator for STORIES,"1 Imputed
+0 Not imputed
+-2 Not applicable",YOUR HOME,
+ZSWIMPOOL,Num,Imputation indicator for SWIMPOOL,"1 Imputed
+0 Not imputed
+-2 Not applicable",YOUR HOME,
+ZTELLDAYS,Num,Imputation indicator for TELLDAYS,"1 Imputed
+0 Not imputed
+-2 Not applicable",ELECTRONICS,
+ZTELLWORK,Num,Imputation indicator for TELLWORK,"1 Imputed
+0 Not imputed",ELECTRONICS,
+ZTEMPGONE,Num,Imputation indicator for TEMPGONE,"1 Imputed
+0 Not imputed
+-2 Not applicable",THERMOSTAT,
+ZTEMPGONEAC,Num,Imputation indicator for TEMPGONEAC,"1 Imputed
+0 Not imputed
+-2 Not applicable",THERMOSTAT,
+ZTEMPHOME,Num,Imputation indicator for TEMPHOME,"1 Imputed
+0 Not imputed
+-2 Not applicable",THERMOSTAT,
+ZTEMPHOMEAC,Num,Imputation indicator for TEMPHOMEAC,"1 Imputed
+0 Not imputed
+-2 Not applicable",THERMOSTAT,
+ZTEMPNITE,Num,Imputation indicator for TEMPNITE,"1 Imputed
+0 Not imputed
+-2 Not applicable",THERMOSTAT,
+ZTEMPNITEAC,Num,Imputation indicator for TEMPNITEAC,"1 Imputed
+0 Not imputed
+-2 Not applicable",THERMOSTAT,
+ZTLDESKTOP,Num,Imputation indicator for TLDESKTOP,"1 Imputed
+0 Not imputed
+-2 Not applicable",ELECTRONICS,
+ZTLLAPTOP,Num,Imputation indicator for TLLAPTOP,"1 Imputed
+0 Not imputed
+-2 Not applicable",ELECTRONICS,
+ZTLMONITOR,Num,Imputation indicator for TLMONITOR,"1 Imputed
+0 Not imputed
+-2 Not applicable",ELECTRONICS,
+ZTLOTHER,Num,Imputation indicator for TLOTHER,"1 Imputed
+0 Not imputed
+-2 Not applicable",ELECTRONICS,
+ZTLTABLET,Num,Imputation indicator for TLTABLET,"1 Imputed
+0 Not imputed
+-2 Not applicable",ELECTRONICS,
+ZTOAST,Num,Imputation indicator for TOAST,"1 Imputed
+0 Not imputed",APPLIANCES,
+ZTOASTOVN,Num,Imputation indicator for TOASTOVN,"1 Imputed
+0 Not imputed",APPLIANCES,
+ZTOPFRONT,Num,Imputation indicator for TOPFRONT,"1 Imputed
+0 Not imputed
+-2 Not applicable",APPLIANCES,
+ZTREESHAD,Num,Imputation indicator for TREESHAD,"1 Imputed
+0 Not imputed",YOUR HOME,
+ZTVAUDIOSYS,Num,Imputation indicator for TVAUDIOSYS,"1 Imputed
+0 Not imputed
+-2 Not applicable",ELECTRONICS,
+ZTVCOLOR,Num,Imputation indicator for TVCOLOR,"1 Imputed
+0 Not imputed",ELECTRONICS,
+ZTVONWD1,Num,Imputation indicator for TVONWD1,"1 Imputed
+0 Not imputed
+-2 Not applicable",ELECTRONICS,
+ZTVONWD2,Num,Imputation indicator for TVONWD2,"1 Imputed
+0 Not imputed
+-2 Not applicable",ELECTRONICS,
+ZTVONWD3,Num,Imputation indicator for TVONWD3,"1 Imputed
+0 Not imputed
+-2 Not applicable",ELECTRONICS,
+ZTVONWE1,Num,Imputation indicator for TVONWE1,"1 Imputed
+0 Not imputed
+-2 Not applicable",ELECTRONICS,
+ZTVONWE2,Num,Imputation indicator for TVONWE2,"1 Imputed
+0 Not imputed
+-2 Not applicable",ELECTRONICS,
+ZTVONWE3,Num,Imputation indicator for TVONWE3,"1 Imputed
+0 Not imputed
+-2 Not applicable",ELECTRONICS,
+ZTVSIZE1,Num,Imputation indicator for TVSIZE1,"1 Imputed
+0 Not imputed
+-2 Not applicable",ELECTRONICS,
+ZTVSIZE2,Num,Imputation indicator for TVSIZE2,"1 Imputed
+0 Not imputed
+-2 Not applicable",ELECTRONICS,
+ZTVSIZE3,Num,Imputation indicator for TVSIZE3,"1 Imputed
+0 Not imputed
+-2 Not applicable",ELECTRONICS,
+ZTVTYPE1,Num,Imputation indicator for TVTYPE1,"1 Imputed
+0 Not imputed
+-2 Not applicable",ELECTRONICS,
+ZTVTYPE2,Num,Imputation indicator for TVTYPE2,"1 Imputed
+0 Not imputed
+-2 Not applicable",ELECTRONICS,
+ZTVTYPE3,Num,Imputation indicator for TVTYPE3,"1 Imputed
+0 Not imputed
+-2 Not applicable",ELECTRONICS,
+ZTVUSE1,Num,Imputation indicator for TVUSE1,"1 Imputed
+0 Not imputed
+-2 Not applicable",ELECTRONICS,
+ZTVUSE2,Num,Imputation indicator for TVUSE2,"1 Imputed
+0 Not imputed
+-2 Not applicable",ELECTRONICS,
+ZTVUSE3,Num,Imputation indicator for TVUSE3,"1 Imputed
+0 Not imputed
+-2 Not applicable",ELECTRONICS,
+ZTYPEGLASS,Num,Imputation indicator for TYPEGLASS,"1 Imputed
+0 Not imputed",YOUR HOME,
+ZTYPERFR1,Num,Imputation indicator for TYPERFR1,"1 Imputed
+0 Not imputed
+-2 Not applicable",APPLIANCES,
+ZTYPERFR2,Num,Imputation indicator for TYPERFR2,"1 Imputed
+0 Not imputed
+-2 Not applicable",APPLIANCES,
+ZTYPETHERM,Num,Imputation indicator for TYPETHERM,"1 Imputed
+0 Not imputed
+-2 Not applicable",THERMOSTAT,
+ZUGASHERE,Num,Imputation indicator for UGASHERE,"1 Imputed
+0 Not imputed",YOUR HOME,
+ZUPRTFRZR,Num,Imputation indicator for UPRTFRZR,"1 Imputed
+0 Not imputed
+-2 Not applicable",APPLIANCES,
+ZUSECFAN,Num,Imputation indicator for USECFAN,"1 Imputed
+0 Not imputed
+-2 Not applicable",AIR CONDITIONING,
+ZUSECOFFEE,Num,Imputation indicator for USECOFFEE,"1 Imputed
+0 Not imputed",APPLIANCES,
+ZUSEDEHUM,Num,Imputation indicator for USEDEHUM,"1 Imputed
+0 Not imputed
+-2 Not applicable",AIR CONDITIONING,
+ZUSEEQUIPAUX,Num,Imputation indicator for USEEQUIPAUX,"1 Imputed
+0 Not imputed
+-2 Not applicable",SPACE HEATING,
+ZUSEHUMID,Num,Imputation indicator for USEHUMID,"1 Imputed
+0 Not imputed
+-2 Not applicable",SPACE HEATING,
+ZVCR,Num,Imputation indicator for VCR,"1 Imputed
+0 Not imputed
+-2 Not applicable",ELECTRONICS,
+ZWALLTYPE,Num,Imputation indicator for WALLTYPE,"1 Imputed
+0 Not imputed",YOUR HOME,
+ZWASHLOAD,Num,Imputation indicator for WASHLOAD,"1 Imputed
+0 Not imputed
+-2 Not applicable",APPLIANCES,
+ZWASHTEMP,Num,Imputation indicator for WASHTEMP,"1 Imputed
+0 Not imputed
+-2 Not applicable",APPLIANCES,
+ZWHEATAGE,Num,Imputation indicator for WHEATAGE,"1 Imputed
+0 Not imputed",WATER HEATING,
+ZWHEATBKT,Num,Imputation indicator for WHEATBKT,"1 Imputed
+0 Not imputed
+-2 Not applicable",WATER HEATING,
+ZWHEATSIZ,Num,Imputation indicator for WHEATSIZ,"1 Imputed
+0 Not imputed",WATER HEATING,
+ZWHYPOWEROUT,Num,Imputation indicator for WHYPOWEROUT,"1 Imputed
+0 Not imputed
+-2 Not applicable",ENERGY BILLS,
+ZWINDOWS,Num,Imputation indicator for WINDOWS,"1 Imputed
+0 Not imputed",YOUR HOME,
+ZWINECHILL,Num,Imputation indicator for WINECHILL,"1 Imputed
+0 Not imputed",APPLIANCES,
+ZWINFRAME,Num,Imputation indicator for WINFRAME,"1 Imputed
+0 Not imputed",YOUR HOME,
+ZYEARMADERANGE,Num,Imputation indicator for YEARMADERANGE,"1 Imputed
+0 Not imputed",YOUR HOME,
+ZTOTROOMS,Num,Imputation indicator for TOTROOMS,"1 Imputed
+0 Not imputed",YOUR HOME,
+ZDNTHEAT,Num,Imputation indicator for DNTHEAT,"1 Imputed
+0 Not imputed
+-2 Not applicable",SPACE HEATING,
+ZTYPEHUQ,Num,Imputation indicator for TYPEHUQ,0 Not imputed,YOUR HOME,
+ZSTUDIO,Num,Imputation indicator for STUDIO,"1 Imputed
+0 Not imputed
+-2 Not applicable",YOUR HOME,
+ZOUTGRILL,Num,Imputation indicator for OUTGRILL,"1 Imputed
+0 Not imputed",APPLIANCES,
+ZHOUSEHOLDER_RACE,Num,Imputation indicator for HOUSEHOLDER_RACE,"1 Imputed
+0 Not imputed",HOUSEHOLD CHARACTERISTICS,
+ZACEQUIPM_pub,Num,Imputation indicator for ACEQUIPM_pub,"1 Imputed
+0 Not imputed
+-2 Not applicable",AIR CONDITIONING,
+ZACEQUIPAUXTYPE_pub,Num,Imputation indicator for ACEQUIPAUXTYPE_pub,"1 Imputed
+0 Not imputed
+-2 Not applicable",AIR CONDITIONING,
+NWEIGHT,Num,Final Analysis Weight,437.9-29279.1,WEIGHTS,
+NWEIGHT1,Num,Final Analysis Weight for replicate 1,0-30015.5,WEIGHTS,
+NWEIGHT2,Num,Final Analysis Weight for replicate 2,0-29421.7,WEIGHTS,
+NWEIGHT3,Num,Final Analysis Weight for replicate 3,0-29431.4,WEIGHTS,
+NWEIGHT4,Num,Final Analysis Weight for replicate 4,0-29493.5,WEIGHTS,
+NWEIGHT5,Num,Final Analysis Weight for replicate 5,0-30039.3,WEIGHTS,
+NWEIGHT6,Num,Final Analysis Weight for replicate 6,0-29419.2,WEIGHTS,
+NWEIGHT7,Num,Final Analysis Weight for replicate 7,0-29586.5,WEIGHTS,
+NWEIGHT8,Num,Final Analysis Weight for replicate 8,0-29498.7,WEIGHTS,
+NWEIGHT9,Num,Final Analysis Weight for replicate 9,0-29844.7,WEIGHTS,
+NWEIGHT10,Num,Final Analysis Weight for replicate 10,0-29634.6,WEIGHTS,
+NWEIGHT11,Num,Final Analysis Weight for replicate 11,0-29681.4,WEIGHTS,
+NWEIGHT12,Num,Final Analysis Weight for replicate 12,0-29848.6,WEIGHTS,
+NWEIGHT13,Num,Final Analysis Weight for replicate 13,0-29842.6,WEIGHTS,
+NWEIGHT14,Num,Final Analysis Weight for replicate 14,0-30184.4,WEIGHTS,
+NWEIGHT15,Num,Final Analysis Weight for replicate 15,0-29969.9,WEIGHTS,
+NWEIGHT16,Num,Final Analysis Weight for replicate 16,0-29824.7,WEIGHTS,
+NWEIGHT17,Num,Final Analysis Weight for replicate 17,0-30606.1,WEIGHTS,
+NWEIGHT18,Num,Final Analysis Weight for replicate 18,0-29689.2,WEIGHTS,
+NWEIGHT19,Num,Final Analysis Weight for replicate 19,0-29336.1,WEIGHTS,
+NWEIGHT20,Num,Final Analysis Weight for replicate 20,0-30274.2,WEIGHTS,
+NWEIGHT21,Num,Final Analysis Weight for replicate 21,0-29766.5,WEIGHTS,
+NWEIGHT22,Num,Final Analysis Weight for replicate 22,0-29791.4,WEIGHTS,
+NWEIGHT23,Num,Final Analysis Weight for replicate 23,0-30126.3,WEIGHTS,
+NWEIGHT24,Num,Final Analysis Weight for replicate 24,0-29946.3,WEIGHTS,
+NWEIGHT25,Num,Final Analysis Weight for replicate 25,0-30445.2,WEIGHTS,
+NWEIGHT26,Num,Final Analysis Weight for replicate 26,0-29893.3,WEIGHTS,
+NWEIGHT27,Num,Final Analysis Weight for replicate 27,0-30029.7,WEIGHTS,
+NWEIGHT28,Num,Final Analysis Weight for replicate 28,0-29599.5,WEIGHTS,
+NWEIGHT29,Num,Final Analysis Weight for replicate 29,0-30136.0,WEIGHTS,
+NWEIGHT30,Num,Final Analysis Weight for replicate 30,0-29895.0,WEIGHTS,
+NWEIGHT31,Num,Final Analysis Weight for replicate 31,0-29604.3,WEIGHTS,
+NWEIGHT32,Num,Final Analysis Weight for replicate 32,0-29310.0,WEIGHTS,
+NWEIGHT33,Num,Final Analysis Weight for replicate 33,0-29408.1,WEIGHTS,
+NWEIGHT34,Num,Final Analysis Weight for replicate 34,0-29563.8,WEIGHTS,
+NWEIGHT35,Num,Final Analysis Weight for replicate 35,0-30437.1,WEIGHTS,
+NWEIGHT36,Num,Final Analysis Weight for replicate 36,0-27896.2,WEIGHTS,
+NWEIGHT37,Num,Final Analysis Weight for replicate 37,0-30596.1,WEIGHTS,
+NWEIGHT38,Num,Final Analysis Weight for replicate 38,0-30129.9,WEIGHTS,
+NWEIGHT39,Num,Final Analysis Weight for replicate 39,0-29261.7,WEIGHTS,
+NWEIGHT40,Num,Final Analysis Weight for replicate 40,0-30344.3,WEIGHTS,
+NWEIGHT41,Num,Final Analysis Weight for replicate 41,0-29593.8,WEIGHTS,
+NWEIGHT42,Num,Final Analysis Weight for replicate 42,0-29938.3,WEIGHTS,
+NWEIGHT43,Num,Final Analysis Weight for replicate 43,0-29878.1,WEIGHTS,
+NWEIGHT44,Num,Final Analysis Weight for replicate 44,0-29896.1,WEIGHTS,
+NWEIGHT45,Num,Final Analysis Weight for replicate 45,0-29729.0,WEIGHTS,
+NWEIGHT46,Num,Final Analysis Weight for replicate 46,0-29102.7,WEIGHTS,
+NWEIGHT47,Num,Final Analysis Weight for replicate 47,0-30069.6,WEIGHTS,
+NWEIGHT48,Num,Final Analysis Weight for replicate 48,0-29343.3,WEIGHTS,
+NWEIGHT49,Num,Final Analysis Weight for replicate 49,0-29590.4,WEIGHTS,
+NWEIGHT50,Num,Final Analysis Weight for replicate 50,0-30026.6,WEIGHTS,
+NWEIGHT51,Num,Final Analysis Weight for replicate 51,0-29246.6,WEIGHTS,
+NWEIGHT52,Num,Final Analysis Weight for replicate 52,0-29445.5,WEIGHTS,
+NWEIGHT53,Num,Final Analysis Weight for replicate 53,0-30131.5,WEIGHTS,
+NWEIGHT54,Num,Final Analysis Weight for replicate 54,0-29439.3,WEIGHTS,
+NWEIGHT55,Num,Final Analysis Weight for replicate 55,0-29216.0,WEIGHTS,
+NWEIGHT56,Num,Final Analysis Weight for replicate 56,0-29202.9,WEIGHTS,
+NWEIGHT57,Num,Final Analysis Weight for replicate 57,0-29818.7,WEIGHTS,
+NWEIGHT58,Num,Final Analysis Weight for replicate 58,0-29817.8,WEIGHTS,
+NWEIGHT59,Num,Final Analysis Weight for replicate 59,0-29606.4,WEIGHTS,
+NWEIGHT60,Num,Final Analysis Weight for replicate 60,0-29818.2,WEIGHTS,
