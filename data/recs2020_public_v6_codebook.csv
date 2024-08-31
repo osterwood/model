@@ -49,8 +49,8 @@ R Rural area
 U Urban area",ADMIN,
 HDD65,Num,"Heating degree days in 2020, base temperature 65F; Derived from the weighted temperatures of nearby weather stations",0-17383,WEATHER,
 CDD65,Num,"Cooling degree days in 2020, base temperature 65F; Derived from the weighted temperatures of nearby weather stations",0-5534,WEATHER,
-HDD30YR_pub,Num,"Heating degree days, 30-year average 1981-2010, base temperature 65F; Taken from nearest weather station, inoculated with random errors",0-16071,WEATHER,
-CDD30YR_pub,Num,"Cooling degree days, 30-year average 1981-2010, base temperature 65F; Taken from nearest weather station, inoculated with random errors",0-4905,WEATHER,
+HDD30YR_PUB,Num,"Heating degree days, 30-year average 1981-2010, base temperature 65F; Taken from nearest weather station, inoculated with random errors",0-16071,WEATHER,
+CDD30YR_PUB,Num,"Cooling degree days, 30-year average 1981-2010, base temperature 65F; Taken from nearest weather station, inoculated with random errors",0-4905,WEATHER,
 TYPEHUQ,Num,Type of housing unit,"1 Mobile home
 2 Single-family house detached from any other house 
 3 Single-family house attached to one or more other houses (for example: duplex, row house, or townhome)
@@ -563,7 +563,7 @@ EQUIPAUXTYPE,Num,Secondary space heating equipment type,"0 Home is heated but no
 13 Ductless heat pump, also known as a “mini-split”
 99 Other 
 -2 Not applicable, home is not heated",SPACE HEATING,
-EQUIPAUX,Num,Secondary space heating equipment used; a derived variable,"1 Yes
+EQUIPAUX,Num,Secondary space heating equipment used; a derived variable,"1 Yes, secondary equipment used
 0 No, home is heated but secondary equipment not used
 -2 Not applicable, home is not heated",SPACE HEATING,
 FUELAUX,Num,Secondary space heating fuel,"5 Electricity
@@ -620,7 +620,7 @@ AIRCOND,Num,Air conditioning equipment used,"1 Yes
 COOLAPT,Num,Main air conditioning equipment serves multiple housing units in building,"1 Yes
 0 No
 -2 Not applicable",AIR CONDITIONING,
-ACEQUIPM_pub,Num,Main air conditioning equipment type,"1 Central air conditioner (includes central heat pump)
+ACEQUIPM_PUB,Num,Main air conditioning equipment type - public file variable,"1 Central air conditioner (includes central heat pump)
 3 Ductless heat pump, also known as a “mini-split”
 4 Window or wall air conditioner
 5 Portable air conditioner
@@ -633,7 +633,7 @@ ACEQUIPAGE,Num,Age of main air conditioning equipment,"1 Less than 2 years old
 5 15 to 19 years old
 6 20 or more years old
 -2 Not applicable",AIR CONDITIONING,
-ACEQUIPAUXTYPE_pub,Num,Secondary air conditioning equipment type,"0 No other equipment used
+ACEQUIPAUXTYPE_PUB,Num,Secondary air conditioning equipment type - public file variable,"0 No other equipment used
 1 Central air conditioner (includes central heat pump)
 3 Ductless heat pump, also known as a “mini-split”
 4 Window or wall air conditioner
@@ -885,7 +885,7 @@ HOUSEHOLDER_RACE,Num,Householder (respondent) race,"1 White Alone
 6 2 or More Races Selected",HOUSEHOLD CHARACTERISTICS,
 NHSLDMEM,Num,Number of household members (top-coded),1 - 7,HOUSEHOLD CHARACTERISTICS,
 NUMCHILD,Num,Number of household members age 17 or younger (top-coded),0 - 4,HOUSEHOLD CHARACTERISTICS,
-NUMADULT1,Num,Number of household members age 18 to 64,1 - 7,HOUSEHOLD CHARACTERISTICS,
+NUMADULT1,Num,Number of household members age 18 to 64,0 - 7,HOUSEHOLD CHARACTERISTICS,
 NUMADULT2,Num,Number of household members age 65 or older,0 - 6,HOUSEHOLD CHARACTERISTICS,
 ATHOME,Num,Number of weekdays someone is at home most or all of the day,"0 None
 1 1 day
@@ -970,6 +970,7 @@ ENERGYASST16,Num,Received home energy assistance in 2016,"1 Yes
 ENERGYASSTOTH,Num,Received home energy assistance in some other year,"1 Yes
 0 No
 -2 Not applicable",ENERGY ASSISTANCE,
+SQFTEST,Num,Respondent-reported square footage (rounded to the nearest 10),240-15000,YOUR HOME,
 SQFTRANGE,Num,Respondent-reported square footage range,"1 Less than 600 square feet
 2 600 to 799 square feet
 3 800 to 999 square feet
@@ -987,7 +988,6 @@ SQFTINCA,Num,Respondent-reported square footage includes attic,"1 Yes
 SQFTINCG,Num,Respondent-reported square footage includes garage,"1 Yes
 0 No
 -2 Not applicable",YOUR HOME,
-SQFTEST,Num,Respondent-reported square footage (rounded to the nearest 10),240-15000,YOUR HOME,
 TOTSQFT_EN,Num,"Total energy-consuming area (square footage) of the housing unit. Includes all main living areas; all basements; heated, cooled, or finished attics; and heating or cooled garages. For single-family housing units this is derived using the respondent-reported square footage (SQFTEST) and adjusted using the ""include"" variables (e.g., SQFTINCB), where applicable. For apartments and mobile homes this is the respondent-reported square footage. A derived variable rounded to the nearest 10",200-15000,YOUR HOME,
 TOTHSQFT,Num,Square footage of the housing unit that is heated by space heating equipment. A derived variable rounded to the nearest 10,0-15000,YOUR HOME,
 TOTCSQFT,Num,"Square footage of the housing unit that is cooled by air-conditioning equipment or evaporative cooler, a derived variable rounded to the nearest 10",0-14600,YOUR HOME,
@@ -1126,8 +1126,7 @@ ZEDUCATION,Num,Imputation indicator for EDUCATION,"1 Imputed
 ZELPAY,Num,Imputation indicator for ELPAY,"1 Imputed
 0 Not imputed",ENERGY BILLS,
 ZELPERIPH,Num,Imputation indicator for ELPERIPH,"1 Imputed
-0 Not imputed
--2 Not applicable",ELECTRONICS,
+0 Not imputed",ELECTRONICS,
 ZEMPLOYHH,Num,Imputation indicator for EMPLOYHH,"1 Imputed
 0 Not imputed",HOUSEHOLD CHARACTERISTICS,
 ZENERGYASST,Num,Imputation indicator for ENERGYASST,"1 Imputed
@@ -1644,10 +1643,10 @@ ZOUTGRILL,Num,Imputation indicator for OUTGRILL,"1 Imputed
 0 Not imputed",APPLIANCES,
 ZHOUSEHOLDER_RACE,Num,Imputation indicator for HOUSEHOLDER_RACE,"1 Imputed
 0 Not imputed",HOUSEHOLD CHARACTERISTICS,
-ZACEQUIPM_pub,Num,Imputation indicator for ACEQUIPM_pub,"1 Imputed
+ZACEQUIPM_PUB,Num,Imputation indicator for ACEQUIPM_PUB,"1 Imputed
 0 Not imputed
 -2 Not applicable",AIR CONDITIONING,
-ZACEQUIPAUXTYPE_pub,Num,Imputation indicator for ACEQUIPAUXTYPE_pub,"1 Imputed
+ZACEQUIPAUXTYPE_PUB,Num,Imputation indicator for ACEQUIPAUXTYPE_PUB,"1 Imputed
 0 Not imputed
 -2 Not applicable",AIR CONDITIONING,
 NWEIGHT,Num,Final Analysis Weight,437.9-29279.1,WEIGHTS,
@@ -1711,3 +1710,209 @@ NWEIGHT57,Num,Final Analysis Weight for replicate 57,0-29818.7,WEIGHTS,
 NWEIGHT58,Num,Final Analysis Weight for replicate 58,0-29817.8,WEIGHTS,
 NWEIGHT59,Num,Final Analysis Weight for replicate 59,0-29606.4,WEIGHTS,
 NWEIGHT60,Num,Final Analysis Weight for replicate 60,0-29818.2,WEIGHTS,
+KWH,Num,"Total electricity use, in kilowatthours, 2020, including self-generation of solar power",42.01-184101.84,End-use Model,
+BTUEL,Num,"Total electricity use, in thousand Btu, 2020, including self-generation of solar power",143.32-628155.47,End-use Model,
+DOLLAREL,Num,"Total electricity cost, in dollars, 2020",-889.48-15680.18,End-use Model,
+ELXBTU,Num,Conversion factor from kilowatthours to thousand Btu,3.412,End-use Model,
+PERIODEL,Num,Number of days covered by Energy Supplier Survey electricity billing data and used to calculate annual consumption and expenditures,"1  330 days or more
+2  At least 146, but fewer than 330 days
+3  At least 60, but fewer than 146 days
+4  Fewer than 60 days
+5  No billing data collected or billing data not used",End-use Model,
+ZELAMOUNT,Num,Imputation flag for total electricity use,"0 Not imputed
+1 Imputed amount and cost
+2 Imputed only amount for SOLAR=1 cases",End-use Model,
+KWHSPH,Num,"Calibrated electricity usage for space heating, main and secondary, in kilowatt-hours, 2020",0-49544.4,End-use Model,
+KWHCOL,Num,"Calibrated electricity usage for space cooling (central air conditioning, individual units, and evaporative coolers), in kilowatthours, 2020",0-31758.14,End-use Model,
+KWHWTH,Num,"Calibrated electricity usage for water heating, main and secondary, in kilowatthours, 2020",0-25824.46,End-use Model,
+KWHRFG,Num,"Calibrated electricity usage for all refrigerators, in kilowatthours, 2020",0-9278.57,End-use Model,
+KWHRFG1,Num,"Calibrated electricity usage for first refrigerators, in kilowatt-hours, 2020",0-2181.92,End-use Model,
+KWHRFG2,Num,"Calibrated electricity usage for second refrigerators, in kilowatt-hours, 2020",0-1953.3,End-use Model,
+KWHFRZ,Num,"Calibrated electricity usage for freezers, in kilowatt-hours, 2020",0-4693.99,End-use Model,
+KWHCOK,Num,"Calibrated electricity usage for cooking (cooktops, ovens, and ranges), in kilowatt-hours, 2020",0-3205.28,End-use Model,
+KWHMICRO,Num,"Calibrated electricity usage for microwaves, in kilowatt-hours, 2020",0-782.51,End-use Model,
+KWHCW,Num,"Calibrated electricity usage for clothes washers, in kilowatt-hours, 2020",0-733.16,End-use Model,
+KWHCDR,Num,"Calibrated electricity usage for clothes dryers, in kilowatt-hours, 2020",0-7881.8,End-use Model,
+KWHDWH,Num,"Calibrated electricity usage for dishwashers, in kilowatt-hours, 2020",0-1098.97,End-use Model,
+KWHLGT,Num,"Calibrated electricity usage for indoor and outdoor lighting, in kilowatthours, 2020",3.91-14482.85,End-use Model,
+KWHTVREL,Num,"Calibrated electricity usage for televisions and related peripherals, in kilowatt-hours, 2020",0-5911.44,End-use Model,
+KWHTV1,Num,"Calibrated electricity usage for first televisions, in kilowatt-hours, 2020",0-1998.69,End-use Model,
+KWHTV2,Num,"Calibrated electricity usage for second televisions, in kilowatt-hours, 2020",0-1412.35,End-use Model,
+KWHTV3,Num,"Calibrated electricity usage for third televisions, in kilowatt-hours, 2020",0-1401.68,End-use Model,
+KWHAHUHEAT,Num,"Calibrated electricity usage for distributing space heating via furnace fans and boiler pumps, in kilowatt-hours, 2020",0-9722.82,End-use Model,
+KWHAHUCOL,Num,"Calibrated electricity usage for furnace fans used for cooling, in kilowatt-hours, 2020",0-9052.71,End-use Model,
+KWHCFAN,Num,"Calibrated electricity usage for ceiling fans, in kilowatt-hours, 2020",0-2250.68,End-use Model,
+KWHDHUM,Num,"Calibrated electricity usage for dehumidifiers, in kilowatt-hours, 2020",0-11301.76,End-use Model,
+KWHHUM,Num,"Calibrated electricity usage for humidifiers, in kilowatt-hours, 2020",0-1899.64,End-use Model,
+KWHPLPMP,Num,"Calibrated electricity usage for swimming pool pumps, in kilowatt-hours, 2020",0-16367.59,End-use Model,
+KWHHTBPMP,Num,"Calibrated electricity usage for hot tub pumps, in kilowatt-hours, 2020",0-2218.44,End-use Model,
+KWHHTBHEAT,Num,"Calibrated electricity usage for hot tub heaters, in kilowatt-hours, 2020",0-6493.69,End-use Model,
+KWHEVCHRG,Num,"Calibrated electricity usage for charging electric vehicles, in kilowatt-hours, 2020",0-22743.16,End-use Model,
+KWHNEC,Num,"Calibrated electricity usage for other purposes not elsewhere classified, in kilowatt-hours, 2020",0-163828.84,End-use Model,
+KWHOTH,Num,"Calibrated electricity usage for end uses other than space heating, space cooling, water heating, and refrigerators, in kilowatt-hours, 2020",15.51-175602.87,End-use Model,
+BTUELSPH,Num,"Calibrated electricity usage for space heating, main and secondary, in thousand Btu, 2020",0-169045.5,End-use Model,
+BTUELCOL,Num,"Calibrated electricity usage for space cooling (central air conditioning, individual units, and evaporative coolers), in thousand Btu, 2020",0-108358.78,End-use Model,
+BTUELWTH,Num,"Calibrated electricity usage for water heating, main and secondary, in thousand Btu, 2020",0-88113.06,End-use Model,
+BTUELRFG,Num,"Calibrated electricity usage for all refrigerators, in thousand Btu, 2020",0-31658.47,End-use Model,
+BTUELRFG1,Num,"Calibrated electricity usage for first refrigerators, in thousand Btu, 2020",0-7444.7,End-use Model,
+BTUELRFG2,Num,"Calibrated electricity usage for second refrigerators, in thousand Btu, 2020",0-6664.65,End-use Model,
+BTUELFRZ,Num,"Calibrated electricity usage for freezers, in thousand Btu, 2020",0-16015.9,End-use Model,
+BTUELCOK,Num,"Calibrated electricity usage for cooking (cooktops, ovens, and ranges), in thousand Btu, 2020",0-10936.43,End-use Model,
+BTUELMICRO,Num,"Calibrated electricity usage for microwaves, in thousand Btu, 2020",0-2669.92,End-use Model,
+BTUELCW,Num,"Calibrated electricity usage for clothes washers, in thousand Btu, 2020",0-2501.55,End-use Model,
+BTUELCDR,Num,"Calibrated electricity usage for clothes dryers, in thousand Btu, 2020",0-26892.7,End-use Model,
+BTUELDWH,Num,"Calibrated electricity usage for dishwashers, in thousand Btu, 2020",0-3749.68,End-use Model,
+BTUELLGT,Num,"Calibrated electricity usage for indoor and outdoor lighting, in thousand Btu, 2020",13.34-49415.47,End-use Model,
+BTUELTVREL,Num,"Calibrated electricity usage for televisions and related peripherals, in thousand Btu, 2020",0-20169.84,End-use Model,
+BTUELTV1,Num,"Calibrated electricity usage for first televisions, in thousand Btu, 2020",0-6819.53,End-use Model,
+BTUELTV2,Num,"Calibrated electricity usage for second televisions, in thousand Btu, 2020",0-4818.93,End-use Model,
+BTUELTV3,Num,"Calibrated electricity usage for third televisions, in thousand Btu, 2020",0-4782.52,End-use Model,
+BTUELAHUHEAT,Num,"Calibrated electricity usage for distributing space heating via furnace fans and boiler pumps, in thousand Btu, 2020",0-33174.25,End-use Model,
+BTUELAHUCOL,Num,"Calibrated electricity usage for furnace fans used for cooling, in thousand Btu, 2020",0-30887.84,End-use Model,
+BTUELCFAN,Num,"Calibrated electricity usage for ceiling fans, in thousand Btu, 2020",0-7679.32,End-use Model,
+BTUELDHUM,Num,"Calibrated electricity usage for dehumidifiers, in thousand Btu, 2020",0-38561.59,End-use Model,
+BTUELHUM,Num,"Calibrated electricity usage for humidifiers, in thousand Btu, 2020",0-6481.59,End-use Model,
+BTUELPLPMP,Num,"Calibrated electricity usage for swimming pool pumps, in thousand Btu, 2020",0-55846.21,End-use Model,
+BTUELHTBPMP,Num,"Calibrated electricity usage for hot tub pumps, in thousand Btu, 2020",0-7569.33,End-use Model,
+BTUELHTBHEAT,Num,"Calibrated electricity usage for hot tub heaters, in thousand Btu, 2020",0-22156.46,End-use Model,
+BTUELEVCHRG,Num,"Calibrated electricity usage for charging electric vehicles, in thousand Btu, 2020",0-77599.66,End-use Model,
+BTUELNEC,Num,"Calibrated electricity usage for other purposes not elsewhere classified, in thousand Btu, 2020",0-558984,End-use Model,
+BTUELOTH,Num,"Calibrated electricity usage for end uses other than space heating, space cooling, water heating, and refrigerators, in thousand Btu, 2020",52.94-599156.98,End-use Model,
+DOLELSPH,Num,"Calibrated electricity cost for space heating, main and secondary, in US dollars, 2020",-65.47-5147.51,End-use Model,
+DOLELCOL,Num,"Calibrated electricity cost for space cooling (central air conditioning, individual units, and evaporative coolers), in US dollars, 2020",-30.45-3570.14,End-use Model,
+DOLELWTH,Num,"Calibrated electricity cost for water heating, main and secondary, in US dollars, 2020",-32.01-3464.08,End-use Model,
+DOLELRFG,Num,"Calibrated electricity cost for all refrigerators, in US dollars, 2020",-76.79-1249.18,End-use Model,
+DOLELRFG1,Num,"Calibrated electricity cost for first refrigerators, in US dollars, 2020",-56.53-761.99,End-use Model,
+DOLELRFG2,Num,"Calibrated electricity cost for second refrigerators, in US dollars, 2020",-20.26-487.2,End-use Model,
+DOLELFRZ,Num,"Calibrated electricity cost for freezers, in US dollars, 2020",-8.83-780.69,End-use Model,
+DOLELCOK,Num,"Calibrated electricity cost for cooking (cooktops, ovens, and ranges), in US dollars, 2020",-5.59-484.78,End-use Model,
+DOLELMICRO,Num,"Calibrated electricity cost for microwaves, in US dollars, 2020",-15.05-184.23,End-use Model,
+DOLELCW,Num,"Calibrated electricity cost for clothes washers, in US dollars, 2020",-7.01-107.55,End-use Model,
+DOLELCDR,Num,"Calibrated electricity cost for clothes dryers, in US dollars, 2020",-7.69-1515.05,End-use Model,
+DOLELDWH,Num,"Calibrated electricity cost for dishwashers, in US dollars, 2020",-11.56-247.47,End-use Model,
+DOLELLGT,Num,"Calibrated electricity cost for indoor and outdoor lighting, in US dollars, 2020",-276.43-2916.37,End-use Model,
+DOLELTVREL,Num,"Calibrated electricity cost for televisions and related peripherals, in US dollars, 2020",-87.01-916.85,End-use Model,
+DOLELTV1,Num,"Calibrated electricity cost for first televisions, in US dollars, 2020",-16.71-348.83,End-use Model,
+DOLELTV2,Num,"Calibrated electricity cost for second televisions, in US dollars, 2020",-4.6-188.9,End-use Model,
+DOLELTV3,Num,"Calibrated electricity cost for third televisions, in US dollars, 2020",-0.51-253.01,End-use Model,
+DOLELAHUHEAT,Num,"Calibrated electricity cost for distributing space heating via furnace fans and boiler pumps, in US dollars, 2020",-58.15-1185.88,End-use Model,
+DOLELAHUCOL,Num,"Calibrated electricity cost for furnace fans used for cooling, in US dollars, 2020",-2.9-961.11,End-use Model,
+DOLELCFAN,Num,"Calibrated electricity cost for ceiling fans, in US dollars, 2020",-5.75-332.77,End-use Model,
+DOLELDHUM,Num,"Calibrated electricity cost for dehumidifiers, in US dollars, 2020",-3.07-1647.69,End-use Model,
+DOLELHUM,Num,"Calibrated electricity cost for humidifiers, in US dollars, 2020",-1.03-288.48,End-use Model,
+DOLELPLPMP,Num,"Calibrated electricity cost for swimming pool pumps, in US dollars, 2020",-23.86-1877.1,End-use Model,
+DOLELHTBPMP,Num,"Calibrated electricity cost for hot tub pumps, in US dollars, 2020",-53.92-335.08,End-use Model,
+DOLELHTBHEAT,Num,"Calibrated electricity cost for hot tub heaters, in US dollars, 2020",-151.67-903.73,End-use Model,
+DOLELEVCHRG,Num,"Calibrated electricity cost for charging electric vehicles, in US dollars, 2020",-33.98-2263.7,End-use Model,
+DOLELNEC,Num,"Calibrated electricity cost for other purposes not elsewhere classified, in US dollars, 2020",-121.45-13953.5,End-use Model,
+DOLELOTH,Num,"Calibrated electricity cost for end uses other than space heating, space cooling, water heating, and refrigerators, in US dollars, 2020",-782.24-14956.31,End-use Model,
+CUFEETNG,Num,"Total natural gas use, in hundred cubic feet, 2020",0-11091.03,End-use Model,
+BTUNG,Num,"Total natural gas use, in thousand Btu, 2020",0-1134708.69,End-use Model,
+DOLLARNG,Num,"Total natural gas cost, in dollars, 2020",0-8154.98,End-use Model,
+NGXBTU,Num,"Conversion factor from hundred cubic feet of natural gas to thousand Btu, including both heat content and housing unit elevation","77-108 With natural gas use
+-2 Not applicable, no natural gas use",End-use Model,
+PERIODNG,Num,Number of days covered by Energy Supplier Survey natural gas billing data and used to calculate annual consumption and expenditures,"1  330 days or more
+2  At least 146, but fewer than 330 days
+3  At least 60, but fewer than 146 days
+4  Fewer than 60 days
+5  No billing data collected or billing data not used
+-2 Not applicable, no natural gas use",End-use Model,
+ZNGAMOUNT,Num,Imputation flag for total natural gas use,"0 Not imputed
+1 Imputed amount and cost
+-2 Not applicable, no natural gas use",End-use Model,
+BTUNGSPH,Num,"Calibrated natural gas usage for space heating, main and secondary, in thousand Btu, 2020",0-365556.71,End-use Model,
+BTUNGWTH,Num,"Calibrated natural gas usage for water heating, main and secondary, in thousand Btu, 2020",0-125687.15,End-use Model,
+BTUNGCOK,Num,"Calibrated natural gas usage for cooking (cooktops, ovens, and ranges), in thousand Btu, 2020",0-36429.48,End-use Model,
+BTUNGCDR,Num,"Calibrated natural gas usage for clothes dryers, in thousand Btu, 2020",0-22707.48,End-use Model,
+BTUNGPLHEAT,Num,"Calibrated natural gas usage for swimming pool heaters, in thousand Btu, 2020",0-183303.25,End-use Model,
+BTUNGHTBHEAT,Num,"Calibrated natural gas usage for hot tub heaters, in thousand Btu, 2020",0-16261.31,End-use Model,
+BTUNGNEC,Num,"Calibrated natural gas usage for other purposes not elsewhere classified, in thousand Btu, 2020",0-661287.23,End-use Model,
+BTUNGOTH,Num,"Calibrated natural gas usage for end uses other than space heating and water heating, in thousand Btu, 2020",0-745899.26,End-use Model,
+CUFEETNGSPH,Num,"Calibrated natural gas usage for space heating, main and secondary, in hundred cubic feet, 2020",0-3573.08,End-use Model,
+CUFEETNGWTH,Num,"Calibrated natural gas usage for water heating, main and secondary, in hundred cubic feet, 2020",0-1355.09,End-use Model,
+CUFEETNGCOK,Num,"Calibrated natural gas usage for cooking (cooktops, ovens, and ranges), in hundred cubic feet, 2020",0-358.02,End-use Model,
+CUFEETNGCDR,Num,"Calibrated natural gas usage for clothes dryers, in hundred cubic feet, 2020",0-257.92,End-use Model,
+CUFEETNGPLHEAT,Num,"Calibrated natural gas usage for swimming pool heaters, in hundred cubic feet, 2020",0-1788.8,End-use Model,
+CUFEETNGHTBHEAT,Num,"Calibrated natural gas usage for hot tub heaters, in hundred cubic feet, 2020",0-157.18,End-use Model,
+CUFEETNGNEC,Num,"Calibrated natural gas usage for other purposes not elsewhere classified, in hundred cubic feet, 2020",0-6463.65,End-use Model,
+CUFEETNGOTH,Num,"Calibrated natural gas usage for end uses other than space heating and water heating, in hundred cubic feet, 2020",0-7290.68,End-use Model,
+DOLNGSPH,Num,"Calibrated natural gas cost for space heating, main and secondary, in US dollars, 2020",0-4201.47,End-use Model,
+DOLNGWTH,Num,"Calibrated natural gas cost for water heating, main and secondary, in US dollars, 2020",0-3341.66,End-use Model,
+DOLNGCOK,Num,"Calibrated natural gas cost for cooking (cooktops, ovens, and ranges), in US dollars, 2020",0-832.6,End-use Model,
+DOLNGCDR,Num,"Calibrated natural gas cost for clothes dryers, in US dollars, 2020",0-370.71,End-use Model,
+DOLNGPLHEAT,Num,"Calibrated natural gas cost for swimming pool heaters, in US dollars, 2020",0-1906.65,End-use Model,
+DOLNGHTBHEAT,Num,"Calibrated natural gas cost for hot tub heaters, in US dollars, 2020",0-191.77,End-use Model,
+DOLNGNEC,Num,"Calibrated natural gas cost for other purposes not elsewhere classified, in US dollars, 2020",0-4752.57,End-use Model,
+DOLNGOTH,Num,"Calibrated natural gas cost for end uses other than space heating and water heating, in US dollars, 2020",0-5360.67,End-use Model,
+GALLONLP,Num,"Total propane use, in gallons, 2020",0-3982.57,End-use Model,
+BTULP,Num,"Total propane use, in thousand Btu, 2020",0-364215.39,End-use Model,
+DOLLARLP,Num,"Total propane cost, in dollars, 2020",0-6621.44,End-use Model,
+LPXBTU,Num,Conversion factor from gallons of propane to thousand Btu,"91.45 With propane use
+-2 Not applicable, no propane use",End-use Model,
+PERIODLP,Num,Number of days covered by Energy Supplier Survey propane delivery data and used to calculate annual consumption and expenditures,"1  366 days or more 
+2  At least 1, but fewer than 366 days
+5  No delivery data collected or delivery data not used
+-2 Not applicable, no propane use",End-use Model,
+ZLPAMOUNT,Num,Imputation flag for total propane use,"0 Not imputed
+1 Imputed amount and cost
+-2 Not applicable, no propane use",End-use Model,
+BTULPSPH,Num,"Calibrated propane usage for space heating, main and secondary, in thousand Btu, 2020",0-336569.68,End-use Model,
+BTULPWTH,Num,"Calibrated propane usage for water heating, main and secondary,  in thousand Btu, 2020",0-45679.06,End-use Model,
+BTULPCOK,Num,"Calibrated propane usage for cooking (cooktops, ovens, and ranges), in thousand Btu, 2020",0-12061.04,End-use Model,
+BTULPCDR,Num,"Calibrated propane usage for clothes dryers, in thousand Btu, 2020",0-9343.22,End-use Model,
+BTULPNEC,Num,"Calibrated propane usage for other purposes not elsewhere classified, in thousand Btu, 2020",0-144340.11,End-use Model,
+BTULPOTH,Num,"Calibrated propane usage for end uses other than space heating and water heating, in thousand Btu, 2020",0-144340.11,End-use Model,
+GALLONLPSPH,Num,"Calibrated propane usage for space heating, main and secondary, in gallons, 2020",0-3680.27,End-use Model,
+GALLONLPWTH,Num,"Calibrated propane usage for water heating, main and secondary, in gallons, 2020",0-499.48,End-use Model,
+GALLONLPCOK,Num,"Calibrated propane usage for cooking (cooktops, ovens, and ranges), in gallons, 2020",0-131.88,End-use Model,
+GALLONLPCDR,Num,"Calibrated propane usage for clothes dryers, in gallons, 2020",0-102.16,End-use Model,
+GALLONLPNEC,Num,"Calibrated propane usage for other purposes not elsewhere classified, in gallons, 2020",0-1578.31,End-use Model,
+GALLONLPOTH,Num,"Calibrated propane usage for end uses other than space heating and water heating, in gallons, 2020",0-1578.31,End-use Model,
+DOLLPSPH,Num,"Calibrated propane cost for space heating, main and secondary, in US dollars, 2020",0-6118.84,End-use Model,
+DOLLPWTH,Num,"Calibrated propane cost for water heating, main and secondary, in US dollars, 2020",0-1847.33,End-use Model,
+DOLLPCOK,Num,"Calibrated propane cost for cooking (cooktops, ovens, and ranges), in US dollars, 2020",0-681.43,End-use Model,
+DOLLPCDR,Num,"Calibrated propane cost for clothes dryers, in US dollars, 2020",0-268.04,End-use Model,
+DOLLPNEC,Num,"Calibrated propane cost for other purposes not elsewhere classified, in US dollars, 2020",0-3233.35,End-use Model,
+DOLLPOTH,Num,"Calibrated propane cost for space heating, in US dollars, 2020",0-3233.35,End-use Model,
+GALLONFO,Num,"Total fuel oil/kerosene use, in gallons, 2020",0-3102.82,End-use Model,
+BTUFO,Num,"Total fuel oil/kerosene use, in thousand Btu, 2020",0-426268.5,End-use Model,
+DOLLARFO,Num,"Total fuel oil/kerosene cost, in dollars, 2020",0-7003.69,End-use Model,
+FOXBTU,Num,Conversion factor from gallons of fuel oil/kerosene to thousand Btu,"137.38 With fuel oil use
+-2 Not applicable, no fuel oil/kerosene use",End-use Model,
+PERIODFO,Num,Number of days covered by Energy Supplier Survey fuel oil/kerosene delivery data and used to calculate annual consumption and expenditures,"1  366 days or more 
+2  At least 1, but fewer than 366 days
+5  No delivery data collected or delivery data not used
+-2 Not applicable, no fuel oil/kerosene use",End-use Model,
+ZFOAMOUNT,Num,Imputation flag for total fuel oil/kerosene use,"0 Not imputed
+1 Imputed amount and cost
+-2 Not applicable, no fuel oil/kerosene use",End-use Model,
+BTUFOSPH,Num,"Calibrated fuel oil/kerosene usage for space heating, main and secondary,  in thousand Btu, 2020",0-396395,End-use Model,
+BTUFOWTH,Num,"Calibrated fuel oil/kerosene usage for water heating, main and secondary, in thousand Btu, 2020",0-51331.07,End-use Model,
+BTUFONEC,Num,"Calibrated fuel oil/kerosene usage for other purposes not elsewhere classified, in thousand Btu, 2020",0-160524.58,End-use Model,
+BTUFOOTH,Num,"Calibrated fuel oil/kerosene usage for end uses other than space heating and water heating, in thousand Btu, 2020",0-160524.58,End-use Model,
+GALLONFOSPH,Num,"Calibrated fuel oil/kerosene usage for space heating, main and secondary, in gallons, 2020",0-2885.37,End-use Model,
+GALLONFOWTH,Num,"Calibrated fuel oil/kerosene usage for water heating, main and secondary, in gallons, 2020",0-373.64,End-use Model,
+GALLONFONEC,Num,"Calibrated fuel oil/kerosene usage for other purposes not elsewhere classified, in gallons, 2020",0-1168.46,End-use Model,
+GALLONFOOTH,Num,"Calibrated fuel oil/kerosene usage for end uses other than space heating and water heating, in gallons, 2020",0-1168.46,End-use Model,
+DOLFOSPH,Num,"Calibrated fuel oil/kerosene cost for space heating, main and secondary, in US dollars, 2020",0-6512.86,End-use Model,
+DOLFOWTH,Num,"Calibrated fuel oil/kerosene cost for water heating, main and secondary, in US dollars, 2020",0-1148.18,End-use Model,
+DOLFONEC,Num,"Calibrated fuel oil/kerosene cost for other purposes not elsewhere classified, in US dollars, 2020",0-2677.08,End-use Model,
+DOLFOOTH,Num,"Calibrated fuel oil/kerosene usage for end uses other than space heating and water heating, in US dollars, 2020",0-2677.08,End-use Model,
+BTUWD,Num,"Total wood use, in thousand Btu, 2020",0-500000,End-use Model,
+ZWDAMOUNT,Num,Imputation flag for total wood use,"0 Not imputed
+1 Imputed amount and cost
+-2 Not applicable, no fuel oil/kerosene use",End-use Model,
+TOTALBTUSPH,Num,"Total usage for space heating including electricity, natural gas, propane, and fuel oil, in thousand Btu, 2020",0-396395,End-use Model,
+TOTALDOLSPH,Num,"Total cost for space heating including electricity, natural gas, propane, and fuel oil, in dollars, 2020",-39.47-6512.86,End-use Model,
+TOTALBTUWTH,Num,"Total usage for water heating including electricity, natural gas, propane, and fuel oil, in thousand Btu, 2020",0-134610.82,End-use Model,
+TOTALDOLWTH,Num,"Total cost for water heating including electricity, natural gas, propane, and fuel oil, in dollars, 2020",-32.01-3464.08,End-use Model,
+TOTALBTUOTH,Num,"Total usage for 'Other' including electricity, natural gas, propane, and fuel oil, in thousand Btu, 2020",115.81-909682.69,End-use Model,
+TOTALDOLOTH,Num,"Total cost for 'Other' including electricity, natural gas, propane, and fuel oil, in dollars, 2020",-740.54-15626.76,End-use Model,
+TOTALBTU,Num,"Total usage including electricity, natural gas, propane, and fuel oil, in thousand Btu, 2020",1182.22-1367548.13,End-use Model,
+TOTALDOL,Num,"Total cost including electricity, natural gas, propane, and fuel oil, in dollars, 2020",-150.51-20043.41,End-use Model,
+DBT1,Num,Dry Bulb Design Temperature (F) - temp expected to be exceeded 1% of the time,57.7-111.4,WEATHER,
+DBT99,Num,Dry Bulb Design Temperature (F) - temp expected to be exceeded 99% of the time,-44.9-67.5,WEATHER,
+GWT,Num,Annual average ground water temperature (F) for 2020,32.1 - 80.8,WEATHER,
+WOODTYPE,Num,Wood type used for space heating,"1 Wood logs or split wood
+2 Pellets
+-2 Not applicable",SPACE HEATING,
