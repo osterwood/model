@@ -4,7 +4,26 @@ from pprint import pprint
 
 import tabulate
 
+DECODES = {}
+
+SKIP_ROWS = [
+    'ELXBTU',
+    'NWEIGHT'
+]
+
+for num in range(1,61):
+    SKIP_ROWS.append("NWEIGHT{}".format(num))
+
 def parse_codebook_row(row):
+
+    if row[0] in SKIP_ROWS:
+        return None
+
+    if row[4].startswith('ELECTRONICS'):
+        return None
+
+    if row[2].startswith('Imputation'):
+        return None
 
     data = dict(
         variable=row[0],
@@ -14,16 +33,26 @@ def parse_codebook_row(row):
     )
 
     if data['type'] == 'Char':
-        data['codes'] = row[3].split('\n')
+        if row[0] == 'UATYP10':
+            data['codes'] = dict([('C', 'Urban cluster'), ('R', 'Rural area'), ('U', 'Urban area')])
+        else:
+            data['codes'] = row[3].split('\n')
 
     elif data['type'] == 'Num':
         chunks = row[3].strip().split('\n')
 
+        # These entries in the codebook are incomplete
         if row[0] == 'ELOTHER' or row[0] == 'USEEL':
             data['codes'] = dict([(1, 'Yes'), (0, 'No')])
 
         elif row[0] == 'ZTYPEHUQ':
             data['codes'] = dict([(1, 'Imputed'), (0, 'Not imputed')])            
+
+        elif row[0] == 'EVCHRGHOME':
+            data['codes'] = dict([(1, 'Yes'), (0, 'No'), (-2, 'Not applicable')])
+
+        elif row[0] in ['FOXBTU', 'NGXBTU', 'LPXBTU']:
+            data['codes'] = [50, 150]
 
         elif row[0] == 'EQUIPM':
             data['codes'] = dict([
@@ -51,18 +80,23 @@ def parse_codebook_row(row):
             ])
 
         elif len(chunks) == 1:
-            if chunks[0].index('-') > 0:
-                if row[0].startswith('NWEIGHT'):
-                    data['codes'] = list(map(float, chunks[0].split('-')))
+            if '-' in chunks[0]:
+                # Can't naively split the range by '-' as the first number might be negative.
+                # So, we look for the last dash and extract the first and second number from that
+                split_point = chunks[0].rindex("-")
+                nums = [chunks[0][0:split_point].strip(), chunks[0][split_point+1:].strip()]
+                
+                if '.' in chunks[0]:
+                    data['codes'] = list(map(float, nums))
                 else:
-                    data['codes'] = list(map(int, chunks[0].split('-')))
+                    data['codes'] = list(map(int, nums))
             else:
-                print('WARN: single row, but not a range')
+                print("WARN: {} is single row, but not a range".format(data['variable']))
         else:
             codes = {}
             for code in chunks:
                 code = code.split(' ')
-                codes[code[0]] = ' '.join(code[1:])
+                codes[int(code[0])] = ' '.join(code[1:])
             data['codes'] = codes
 
     else:
@@ -88,7 +122,17 @@ class RECS:
                     continue
 
                 data = parse_codebook_row(row)
-                self.codebook[data['variable']] = data
+
+                if data is not None:
+
+                    if data['codes'].__class__ == dict:
+                        DECODES[data['variable']] = data['codes']
+
+                    self.codebook[data['variable']] = data
+
+    def print_codebook(self):
+        for key in self.codebook.keys():
+            print(self.codebook[key])
 
     def run_agg(self, column):
         agg = dict()
