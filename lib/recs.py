@@ -1,14 +1,54 @@
-import pandas as pd
+
 import csv
+import sys
 from pprint import pprint
 
 import tabulate
 
-DECODES = {}
+HEADER = []
+CODEBOOK = dict()
+DECODES = dict()
+
+class Sample:
+
+    def __init__(self, data):
+        self.data = data
+
+    def __getitem__(self, key):
+        return self.data[key]
+
+    @classmethod
+    def parse(cls, row):
+        data = dict()
+
+        for idx,value in enumerate(row):
+            col = HEADER[idx]
+
+            if col in CODEBOOK.keys():
+                
+                if 'outtype' in CODEBOOK[col].keys():
+                    outtype = CODEBOOK[col]['outtype']
+
+                    if outtype == 'float':
+                        value = float(value)
+                    elif outtype == 'int':
+                        value = int(value)
+
+                    # maps can also have string keys, so we check for 'num' type
+                    elif outtype == 'map' and CODEBOOK[col]['intype'] == 'num':
+                        # Sometimes a map will not have an entry, in that case
+                        # set the value to -2, which commonly means 'Not applicable'
+                        if value == '':
+                            value = -2
+                        else:
+                            value = int(value)
+
+                data[col] = value
+
+        return cls(data)
 
 SKIP_ROWS = [
-    'ELXBTU',
-    'NWEIGHT'
+    'ELXBTU'
 ]
 
 for num in range(1,61):
@@ -27,18 +67,20 @@ def parse_codebook_row(row):
 
     data = dict(
         variable=row[0],
-        type=row[1],
+        intype=row[1].lower(),
         desc=row[2],
         section=row[4]
     )
 
-    if data['type'] == 'Char':
+    if data['intype'] == 'char':
         if row[0] == 'UATYP10':
             data['codes'] = dict([('C', 'Urban cluster'), ('R', 'Rural area'), ('U', 'Urban area')])
+            data['outtype'] = 'map'
         else:
             data['codes'] = row[3].split('\n')
 
-    elif data['type'] == 'Num':
+    elif data['intype'] == 'num':
+        data['outtype'] = 'map'
         chunks = row[3].strip().split('\n')
 
         # These entries in the codebook are incomplete
@@ -53,6 +95,7 @@ def parse_codebook_row(row):
 
         elif row[0] in ['FOXBTU', 'NGXBTU', 'LPXBTU']:
             data['codes'] = [50, 150]
+            data['outtype'] = 'float'
 
         elif row[0] == 'EQUIPM':
             data['codes'] = dict([
@@ -88,8 +131,10 @@ def parse_codebook_row(row):
                 
                 if '.' in chunks[0]:
                     data['codes'] = list(map(float, nums))
+                    data['outtype'] = 'float'
                 else:
                     data['codes'] = list(map(int, nums))
+                    data['outtype'] = 'int'
             else:
                 print("WARN: {} is single row, but not a range".format(data['variable']))
         else:
@@ -98,6 +143,12 @@ def parse_codebook_row(row):
                 code = code.split(' ')
                 codes[int(code[0])] = ' '.join(code[1:])
             data['codes'] = codes
+
+        if data['variable'].startswith('BTU'):
+            data['outtype'] = 'float'
+
+        if data['variable'].startswith('TOTAL') and data['section'] == 'End-use Model':
+            data['outtype'] = 'float'            
 
     else:
         pass
@@ -108,9 +159,8 @@ class RECS:
 
     def __init__(self, file):
         self.file = file
-        self.df = pd.read_csv(file)
-        self.codebook = dict()
-
+        self.entries = []
+        
         self.statedata = dict()
         self.columnkeys = dict()
 
@@ -125,21 +175,35 @@ class RECS:
 
                 if data is not None:
 
-                    if data['codes'].__class__ == dict:
+                    if 'codes' in data.keys() and data['codes'].__class__ == dict:
                         DECODES[data['variable']] = data['codes']
 
-                    self.codebook[data['variable']] = data
+                    CODEBOOK[data['variable']] = data
+
+        print("RECS Codebook loaded")
+
+        with open(file) as csvfile:
+            reader = csv.reader(csvfile, delimiter=',')
+            for idx,row in enumerate(reader):
+
+                if idx == 0:
+                    for col in row:
+                        HEADER.append(col)
+                    print("{} of {} columns of RECS data will be loaded".format(len(CODEBOOK.keys()), len(HEADER)))
+
+                else:
+                    self.entries.append(Sample.parse(row))
 
     def print_codebook(self):
-        for key in self.codebook.keys():
-            print(self.codebook[key])
+        for key in CODEBOOK.keys():
+            print(CODEBOOK[key])
 
     def run_agg(self, column):
         agg = dict()
-        variable = self.codebook[column]
+        variable = CODEBOOK[column]
         codes = {v: k for k, v in variable['codes'].items()}
 
-        for index, row in self.df.iterrows():
+        for index, row in enumerate(self.entries):
             state = row['state_postal']
             col = row[column]
 
@@ -176,7 +240,7 @@ class RECS:
             for key in cols:
                 percent = 0.0
 
-                if int(codes[key]) in this.keys():
+                if codes[key] in this.keys():
                     weight = this[int(codes[key])]['weight']
                     percent = round(float(weight) / weigths * 100.0,2)
 
