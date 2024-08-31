@@ -2,8 +2,9 @@ import pandas as pd
 import csv
 from pprint import pprint
 
+import tabulate
+
 def parse_codebook_row(row):
-    # print(row)
 
     data = dict(
         variable=row[0],
@@ -24,6 +25,31 @@ def parse_codebook_row(row):
         elif row[0] == 'ZTYPEHUQ':
             data['codes'] = dict([(1, 'Imputed'), (0, 'Not imputed')])            
 
+        elif row[0] == 'EQUIPM':
+            data['codes'] = dict([
+                (3, 'Central furnace'),
+                (2, 'Steam or water radiators'),
+                (4, 'Central heat pump'),
+                (13, 'Ductless heat pump'),
+                (5, 'Built-in electric heater'),
+                (7, 'Built-in gas or oil heater '),
+                (8, 'Wood or pellet stove'),
+                (10, 'Portable electric heaters'),
+                (99, 'Other'),
+                (-2, 'None')
+            ])
+
+        elif row[0] == 'FUELHEAT':
+            data['codes'] = dict([
+                (5,'Electricity'),
+                (1, 'Natural Gas'),
+                (2, 'Propane'),
+                (3, 'Fuel oil'),
+                (7, 'Wood or pellets'),
+                (99, 'Other'),
+                (-2, 'None')
+            ])
+
         elif len(chunks) == 1:
             if chunks[0].index('-') > 0:
                 if row[0].startswith('NWEIGHT'):
@@ -42,9 +68,6 @@ def parse_codebook_row(row):
     else:
         pass
 
-    if data['variable'] == 'FUELHEAT':
-        pprint(data)
-
     return data
 
 class RECS:
@@ -52,7 +75,10 @@ class RECS:
     def __init__(self, file):
         self.file = file
         self.df = pd.read_csv(file)
-        self.codebook = []
+        self.codebook = dict()
+
+        self.statedata = dict()
+        self.columnkeys = dict()
 
         with open(file.replace('.csv','_codebook.csv')) as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
@@ -61,10 +87,92 @@ class RECS:
                 if idx < 2:
                     continue
 
-                self.codebook.append(parse_codebook_row(row))
+                data = parse_codebook_row(row)
+                self.codebook[data['variable']] = data
+
+    def run_agg(self, column):
+        agg = dict()
+        variable = self.codebook[column]
+        codes = {v: k for k, v in variable['codes'].items()}
+
+        for index, row in self.df.iterrows():
+            state = row['state_postal']
+            col = row[column]
+
+            # Skip over apartments in buildings with 2 or more units
+            if row['TYPEHUQ'] > 3:
+                continue
+
+            if state not in agg.keys():
+                agg[state] = dict()
+
+            if col not in agg[state]:
+                agg[state][col] = dict(count=0, weight=0)
+
+            agg[state][col]['count'] += 1
+            agg[state][col]['weight'] += row['NWEIGHT']
+
+        cols = list(variable['codes'].values())
+        self.columnkeys[column] = cols
+
+        for state in sorted(agg.keys()):
+            this = agg[state]
+
+            if state not in self.statedata.keys():
+                self.statedata[state] = dict()
+
+                counts = sum([x['count'] for x in this.values()])
+                # print("{} has {} samples".format(state, counts))
+
+            if column not in self.statedata[state].keys():
+                self.statedata[state][column] = dict()
+
+            weigths = sum([x['weight'] for x in this.values()])
+            
+            for key in cols:
+                percent = 0.0
+
+                if int(codes[key]) in this.keys():
+                    weight = this[int(codes[key])]['weight']
+                    percent = round(float(weight) / weigths * 100.0,2)
+
+                self.statedata[state][column][key] = percent
+           
+    def print_table(self, column):     
+
+        header = ['State'] + self.columnkeys[column]
+        rows = []
+
+        for state in sorted(self.statedata.keys()):
+            data = self.statedata[state][column]
+            row = [state]
+            # print(state, data)
+
+            for col in self.columnkeys[column]:
+                row.append(data[col])
+
+            rows.append(row)
+
+        print()
+        print("=== {} ===".format(column))
+        print(tabulate.tabulate(rows, header))
+        print()
+
+        with open("{}.csv".format(column), 'w') as csvfile:
+            file = csv.writer(csvfile)
+            file.writerow(header)
+            for row in rows:
+                file.writerow(row)
 
     def fuel_heat(self):
-        pass
+        self.run_agg('FUELHEAT')
+        self.print_table('FUELHEAT')
+        
+    def equipt_heat(self):
+        self.run_agg('EQUIPM')
+        self.print_table('EQUIPM')
+
+
 
 if __name__ == '__main__':
     import os, inspect
@@ -73,3 +181,5 @@ if __name__ == '__main__':
     file = '{}/../data/recs2020_public_v6.csv'.format(lib_folder)
 
     recs = RECS(file)
+    recs.equipt_heat()
+    recs.fuel_heat()
