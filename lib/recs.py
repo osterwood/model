@@ -1,4 +1,4 @@
-
+import ibis
 import csv
 import sys
 from pprint import pprint
@@ -16,6 +16,20 @@ class Sample:
 
     def __getitem__(self, key):
         return self.data[key]
+
+    def readable(self, key):
+        value = self.data[key]
+
+        if key in DECODES.keys():
+            return DECODES[key][value]
+
+        return value
+
+    def __repr__(self):
+        return self.data.__repr__()
+
+    def to_array(self, cols):
+        return [self.data[col] for col in cols]
 
     @classmethod
     def parse(cls, row):
@@ -159,12 +173,8 @@ class RECS:
 
     def __init__(self, file):
         self.file = file
-        self.entries = []
         
-        self.statedata = dict()
-        self.columnkeys = dict()
-
-        with open(file.replace('.csv','_codebook.csv')) as csvfile:
+        with open(file.replace('_sample','').replace('.csv','_codebook.csv')) as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for idx,row in enumerate(reader):
                 ## Skip header rows
@@ -182,7 +192,20 @@ class RECS:
 
         print("RECS Codebook loaded")
 
-        with open(file) as csvfile:
+    def load(self):
+        self.con = ibis.duckdb.connect()
+        self.con.register(self.file, table_name='recs')
+        self.recs = self.con.table("recs")
+        self.entries = None 
+
+    def sample(self):
+
+        output_columns = CODEBOOK.keys()
+        output = []
+        
+        output.append(output_columns)
+
+        with open(self.file) as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for idx,row in enumerate(reader):
 
@@ -192,18 +215,31 @@ class RECS:
                     print("{} of {} columns of RECS data will be loaded".format(len(CODEBOOK.keys()), len(HEADER)))
 
                 else:
-                    self.entries.append(Sample.parse(row))
+                    sample = Sample.parse(row)
+                    output.append(sample.to_array(output_columns))
+                    
+        with open(self.file.replace(".csv", "_sample.csv"), 'w', newline='') as handle:
+            csv_writer = csv.writer(handle, delimiter=',')
+            for row in output:
+                csv_writer.writerow(row)
+        handle.close()
+
 
     def print_codebook(self):
         for key in CODEBOOK.keys():
             print(CODEBOOK[key])
 
     def run_agg(self, column):
+        if self.entries is None:
+            self.entries = self.recs.to_pandas()
+        
+        statedata = dict()
         agg = dict()
+
         variable = CODEBOOK[column]
         codes = {v: k for k, v in variable['codes'].items()}
 
-        for index, row in enumerate(self.entries):
+        for index, row in self.entries.iterrows():
             state = row['state_postal']
             col = row[column]
 
@@ -220,65 +256,65 @@ class RECS:
             agg[state][col]['count'] += 1
             agg[state][col]['weight'] += row['NWEIGHT']
 
-        cols = list(variable['codes'].values())
-        self.columnkeys[column] = cols
-
+        columns = list(variable['codes'].values())
+        
         for state in sorted(agg.keys()):
             this = agg[state]
 
-            if state not in self.statedata.keys():
-                self.statedata[state] = dict()
+            if state not in statedata.keys():
+                statedata[state] = dict()
 
                 counts = sum([x['count'] for x in this.values()])
                 # print("{} has {} samples".format(state, counts))
 
-            if column not in self.statedata[state].keys():
-                self.statedata[state][column] = dict()
+            if column not in statedata[state].keys():
+                statedata[state][column] = dict()
 
             weigths = sum([x['weight'] for x in this.values()])
             
-            for key in cols:
+            for key in columns:
                 percent = 0.0
 
                 if codes[key] in this.keys():
                     weight = this[int(codes[key])]['weight']
                     percent = round(float(weight) / weigths * 100.0,2)
 
-                self.statedata[state][column][key] = percent
-           
-    def print_table(self, column):     
+                statedata[state][column][key] = percent
 
-        header = ['State'] + self.columnkeys[column]
+        return columns, statedata
+           
+    def print_table(self, name, columns, statedata):     
+
+        header = ['State'] + columns
         rows = []
 
-        for state in sorted(self.statedata.keys()):
-            data = self.statedata[state][column]
+        for state in sorted(statedata.keys()):
+            data = statedata[state][name]
             row = [state]
-            # print(state, data)
-
-            for col in self.columnkeys[column]:
+            
+            for col in columns:
                 row.append(data[col])
 
             rows.append(row)
 
         print()
-        print("=== {} ===".format(column))
+        print("=== {} ===".format(name))
         print(tabulate.tabulate(rows, header))
         print()
 
-        with open("{}.csv".format(column), 'w') as csvfile:
+        with open("{}.csv".format(name), 'w') as csvfile:
             file = csv.writer(csvfile)
             file.writerow(header)
             for row in rows:
                 file.writerow(row)
 
     def fuel_heat(self):
-        self.run_agg('FUELHEAT')
-        self.print_table('FUELHEAT')
+        columns, data = self.run_agg('FUELHEAT')
+        self.print_table('FUELHEAT', columns, data)
         
     def equipt_heat(self):
-        self.run_agg('EQUIPM')
-        self.print_table('EQUIPM')
+        columns, data = self.run_agg('EQUIPM')
+        self.print_table('EQUIPM', columns, data)
 
 
 
@@ -286,8 +322,13 @@ if __name__ == '__main__':
     import os, inspect
     
     lib_folder = os.path.join(os.path.split(inspect.getfile( inspect.currentframe() ))[0], '..', 'lib')
-    file = '{}/../data/recs2020_public_v6.csv'.format(lib_folder)
 
+    # file = '{}/../data/recs2020_public_v6.csv'.format(lib_folder)
+    # recs = RECS(file)
+    # recs.sample()
+
+    file = '{}/../data/recs2020_public_v6_sample.csv'.format(lib_folder)
     recs = RECS(file)
+    recs.load()
     recs.equipt_heat()
     recs.fuel_heat()
