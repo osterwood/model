@@ -1,9 +1,13 @@
-import ibis
 import csv
 import sys
 from pprint import pprint
 
 import tabulate
+from pypika import Query, Table, Field
+
+import sqlite3
+
+import state
 
 HEADER = []
 CODEBOOK = dict()
@@ -57,12 +61,16 @@ class Sample:
                         else:
                             value = int(value)
 
+                if col == 'DIVISION':
+                    value = value.replace(' ', '_')
+
                 data[col] = value
 
         return cls(data)
 
 SKIP_ROWS = [
-    'ELXBTU'
+    'state_name',
+    'ELXBTU',
 ]
 
 for num in range(1,61):
@@ -171,10 +179,16 @@ def parse_codebook_row(row):
 
 class RECS:
 
-    def __init__(self, file):
+    def __init__(self, file=None):
         self.file = file
         
-        with open(file.replace('_sample','').replace('.csv','_codebook.csv')) as csvfile:
+        if file is None:
+            codebook_file = "data/recs2020_public_v6_codebook.csv"
+            self.con = sqlite3.connect("recs.db")
+        else:
+            codebook_file = file.replace('_sample','').replace('.csv','_codebook.csv')
+
+        with open(codebook_file) as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for idx,row in enumerate(reader):
                 ## Skip header rows
@@ -192,18 +206,21 @@ class RECS:
 
         print("RECS Codebook loaded")
 
-    def load(self):
-        self.con = ibis.duckdb.connect()
-        self.con.register(self.file, table_name='recs')
-        self.recs = self.con.table("recs")
-        self.entries = None 
+    def select(self, columns, where):    
+        cur = self.con.cursor()
 
-    def sample(self):
+        query = "SELECT {} FROM entries WHERE {}".format(",".join(columns), where)        
+        cur.execute(query)
+
+        return [Sample(dict(zip(columns,entry))) for entry in cur.fetchall()]
+
+    def sample(self, save='csv'):
 
         output_columns = CODEBOOK.keys()
         output = []
         
-        output.append(output_columns)
+        if save == 'csv':
+            output.append(output_columns)
 
         with open(self.file) as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
@@ -217,69 +234,72 @@ class RECS:
                 else:
                     sample = Sample.parse(row)
                     output.append(sample.to_array(output_columns))
-                    
-        with open(self.file.replace(".csv", "_sample.csv"), 'w', newline='') as handle:
-            csv_writer = csv.writer(handle, delimiter=',')
+             
+        if save == 'csv':       
+            with open(self.file.replace(".csv", "_sample.csv"), 'w', newline='') as handle:
+                csv_writer = csv.writer(handle, delimiter=',')
+                for row in output:
+                    csv_writer.writerow(row)
+            handle.close()
+
+        if save == 'sqlite':
+            cur = self.con.cursor()
+            cur.execute("DROP TABLE IF EXISTS entries")
+            cur.execute("CREATE TABLE entries({})".format(",".join(output_columns)))
+
             for row in output:
-                csv_writer.writerow(row)
-        handle.close()
+                string = str(row).replace('[','').replace(']','')
+                cur.execute("INSERT INTO entries VALUES ({})".format(string))
+
+            self.con.commit()
+            self.con.close()
 
 
     def print_codebook(self):
         for key in CODEBOOK.keys():
             print(CODEBOOK[key])
 
-    def run_agg(self, column):
-        if self.entries is None:
-            self.entries = self.recs.to_pandas()
-        
-        statedata = dict()
-        agg = dict()
+    def run_state_agg(self, column):
+        states = sorted(state.NAMES.keys())
 
         variable = CODEBOOK[column]
         codes = {v: k for k, v in variable['codes'].items()}
 
-        for index, row in self.entries.iterrows():
-            state = row['state_postal']
-            col = row[column]
-
-            # Skip over apartments in buildings with 2 or more units
-            if row['TYPEHUQ'] > 3:
-                continue
-
-            if state not in agg.keys():
-                agg[state] = dict()
-
-            if col not in agg[state]:
-                agg[state][col] = dict(count=0, weight=0)
-
-            agg[state][col]['count'] += 1
-            agg[state][col]['weight'] += row['NWEIGHT']
-
         columns = list(variable['codes'].values())
-        
-        for state in sorted(agg.keys()):
-            this = agg[state]
+        statedata = dict()
 
-            if state not in statedata.keys():
-                statedata[state] = dict()
+        for statekey in states:
+    
+            agg = dict()
+            cols = [column, 'NWEIGHT', 'TYPEHUQ']
+            entries = self.select(columns=cols, where="state_postal == '{}'".format(statekey))
 
-                counts = sum([x['count'] for x in this.values()])
-                # print("{} has {} samples".format(state, counts))
+            for entry in entries:
+                # Skip over apartments in buildings with 2 or more units
+                if entry['TYPEHUQ'] > 3:
+                    continue
 
-            if column not in statedata[state].keys():
-                statedata[state][column] = dict()
+                value = entry[column]
 
-            weigths = sum([x['weight'] for x in this.values()])
-            
+                if value not in agg:
+                    agg[value] = dict(count=0, weight=0)
+
+                agg[value]['count'] += 1
+                agg[value]['weight'] += entry['NWEIGHT']
+
+            statedata[statekey] = dict()
+
+            counts = sum([x['count'] for x in agg.values()])
+            weigths = sum([x['weight'] for x in agg.values()])
+
             for key in columns:
                 percent = 0.0
 
-                if codes[key] in this.keys():
-                    weight = this[int(codes[key])]['weight']
+                if codes[key] in agg.keys():
+                    weight = agg[int(codes[key])]['weight']
                     percent = round(float(weight) / weigths * 100.0,2)
 
-                statedata[state][column][key] = percent
+                statedata[statekey][key] = percent
 
         return columns, statedata
            
@@ -289,7 +309,7 @@ class RECS:
         rows = []
 
         for state in sorted(statedata.keys()):
-            data = statedata[state][name]
+            data = statedata[state]
             row = [state]
             
             for col in columns:
@@ -309,11 +329,11 @@ class RECS:
                 file.writerow(row)
 
     def fuel_heat(self):
-        columns, data = self.run_agg('FUELHEAT')
+        columns, data = self.run_state_agg('FUELHEAT')
         self.print_table('FUELHEAT', columns, data)
         
     def equipt_heat(self):
-        columns, data = self.run_agg('EQUIPM')
+        columns, data = self.run_state_agg('EQUIPM')
         self.print_table('EQUIPM', columns, data)
 
 
@@ -325,10 +345,9 @@ if __name__ == '__main__':
 
     # file = '{}/../data/recs2020_public_v6.csv'.format(lib_folder)
     # recs = RECS(file)
-    # recs.sample()
+    # recs.sample(save='sqlite')
 
-    file = '{}/../data/recs2020_public_v6_sample.csv'.format(lib_folder)
-    recs = RECS(file)
-    recs.load()
+    # file = '{}/../data/recs2020_public_v6_sample.csv'.format(lib_folder)
+    recs = RECS()
     recs.equipt_heat()
     recs.fuel_heat()
